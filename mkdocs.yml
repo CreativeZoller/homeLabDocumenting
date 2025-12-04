@@ -1,0 +1,53 @@
+site_name: Home Lab Dokumentáció
+site_description: A Home Lab hálózat, hardver és szoftver leírása, részletes és valós idejű dokumentációval.
+site_url: https://github.com/CreativeZoller/homeLabDocumenting
+
+theme:
+  name: material
+  language: hu
+  features:
+    - navigation.tabs           # Felső fülek a navigációhoz
+    - navigation.expand         # Automatkus lenyíló almenük
+    - navigation.indexes        # 'index.md' fájlok használata mappák főoldalaként
+    - search.suggest            # Keresési javaslatok
+    - search.highlight          # Találatok kiemelése
+    - content.code.annotate     # Kódrészletek annotálása
+  
+  # Színpaletta (könnyű váltás világos/sötét mód között)
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Váltás sötét módra
+    - scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Váltás világos módra
+
+# --- MARKDOWN BŐVÍTMÉNYEK ---
+markdown_extensions:
+  - attr_list
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+#  - pymdownx.mermaid
+  - admonition
+  - pymdownx.snippets
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+# --- NAVIGÁCIÓ (A TARTALOMJEGYZÉK) ---
+nav:
+  - Kezdőlap: index.md
+  - 🏡 Hálózati Topológia: 
+    - Áttekintés: network/overview.md
+    - Fizikai Diagram: network/physical-diagram.md
+    - Alhálózatok: network/subnets.md
+  - 🖥️ Szerverek és Hardver:
+    - Hardware BOM: hardware/bom.md
+    - Proxmox: hardware/proxmox.md
+  - ☁️ Szolgáltatások (VM-ek/Docker): services/index.md
+  - 🔐 Biztonsági Szabályok: security.md
