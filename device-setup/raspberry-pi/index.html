@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://github.com/CreativeZoller/homeLabDocumenting/network/physical-diagram/">
+        <link rel="canonical" href="https://github.com/CreativeZoller/homeLabDocumenting/device-setup/raspberry-pi/">
       
       
-        <link rel="prev" href="../overview/">
+        <link rel="prev" href="../switch/">
       
       
-        <link rel="next" href="../../network-setup/device-connections/">
+        <link rel="next" href="../home-server/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Fizikai Diagram - Home Lab Dokumentáció</title>
+        <title>Raspberry Pi - Home Lab Dokumentáció</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#homelab-halozati-topologia" class="md-skip">
+        <a href="#raspberry-pi-4-alapveto-homelab-beallitas" class="md-skip">
           Kihagyás
         </a>
       
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Fizikai Diagram
+              Raspberry Pi
             
           </span>
         </div>
@@ -274,13 +274,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../overview/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../network/overview/" class="md-tabs__link">
           
   
   
@@ -320,11 +318,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../device-setup/router/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../router/" class="md-tabs__link">
           
   
   
@@ -708,10 +708,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -723,22 +721,21 @@
     
     
       
-        
-        
-      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
             
   
   
@@ -756,7 +753,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -774,7 +771,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../overview/" class="md-nav__link">
+      <a href="../../network/overview/" class="md-nav__link">
         
   
   
@@ -799,37 +796,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Fizikai Diagram
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../network/physical-diagram/" class="md-nav__link">
         
   
   
@@ -845,82 +815,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Tartalomjegyzék
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#indulo-allapot" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Induló állapot
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Induló állapot">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#indulo-homelab-ip-cim-es-port-kiosztas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🌐 induló Homelab IP-cím és Port Kiosztás
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#vegso-allapot" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Végső állapot
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Végső állapot">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#vegso-homelab-ip-cim-es-port-kiosztas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🌐 Végső Homelab IP-cím és Port Kiosztás
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1030,8 +924,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -1049,21 +945,22 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
-        
-          
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
             
   
   
@@ -1081,7 +978,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1099,7 +996,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../device-setup/router/" class="md-nav__link">
+      <a href="../router/" class="md-nav__link">
         
   
   
@@ -1127,7 +1024,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../device-setup/switch/" class="md-nav__link">
+      <a href="../switch/" class="md-nav__link">
         
   
   
@@ -1152,10 +1049,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../device-setup/raspberry-pi/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Raspberry Pi
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1171,6 +1095,109 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rendszerfrissites-es-alapcsomagok-telepitese" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rendszerfrissítés és Alapcsomagok Telepítése
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tailscale-telepitese-a-pi-n-biztonsagos-tavoli-eleres" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tailscale Telepítése a Pi-n (Biztonságos Távoli Elérés)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pi-hole-telepitese-docker-kontenerben" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pi-hole Telepítése Docker Konténerben
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unbound-telepitese" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unbound Telepítése
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pi-hole-konfiguracio-modositasa-az-unbound-hasznalathoz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pi-hole konfiguráció módosítása az Unbound használathoz
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tovabbi-pi-szolgaltatasok-telepitese" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        További Pi-szolgáltatások Telepítése
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="További Pi-szolgáltatások Telepítése">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pialert-telepitese-halozati-eszkozok-monitorozasa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pi.alert telepítése (hálózati eszközök monitorozása)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1183,7 +1210,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../device-setup/home-server/" class="md-nav__link">
+      <a href="../home-server/" class="md-nav__link">
         
   
   
@@ -1211,7 +1238,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../device-setup/nas/" class="md-nav__link">
+      <a href="../nas/" class="md-nav__link">
         
   
   
@@ -1266,50 +1293,77 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#indulo-allapot" class="md-nav__link">
+  <a href="#rendszerfrissites-es-alapcsomagok-telepitese" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Induló állapot
+        Rendszerfrissítés és Alapcsomagok Telepítése
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Induló állapot">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#indulo-homelab-ip-cim-es-port-kiosztas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🌐 induló Homelab IP-cím és Port Kiosztás
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#vegso-allapot" class="md-nav__link">
+  <a href="#tailscale-telepitese-a-pi-n-biztonsagos-tavoli-eleres" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Végső állapot
+        Tailscale Telepítése a Pi-n (Biztonságos Távoli Elérés)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Végső állapot">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pi-hole-telepitese-docker-kontenerben" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pi-hole Telepítése Docker Konténerben
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unbound-telepitese" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unbound Telepítése
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pi-hole-konfiguracio-modositasa-az-unbound-hasznalathoz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pi-hole konfiguráció módosítása az Unbound használathoz
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tovabbi-pi-szolgaltatasok-telepitese" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        További Pi-szolgáltatások Telepítése
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="További Pi-szolgáltatások Telepítése">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#vegso-homelab-ip-cim-es-port-kiosztas" class="md-nav__link">
+  <a href="#pialert-telepitese-halozati-eszkozok-monitorozasa" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🌐 Végső Homelab IP-cím és Port Kiosztás
+        Pi.alert telepítése (hálózati eszközök monitorozása)
       
     </span>
   </a>
@@ -1338,323 +1392,132 @@
 
 
 
-<h1 id="homelab-halozati-topologia">📊 Homelab Hálózati Topológia<a class="headerlink" href="#homelab-halozati-topologia" title="Permanent link">&para;</a></h1>
-<h2 id="indulo-allapot">Induló állapot<a class="headerlink" href="#indulo-allapot" title="Permanent link">&para;</a></h2>
-<p><img alt="Hálózati Topológia" src="../images/network-map.png" /></p>
-<h3 id="indulo-homelab-ip-cim-es-port-kiosztas">🌐 induló Homelab IP-cím és Port Kiosztás<a class="headerlink" href="#indulo-homelab-ip-cim-es-port-kiosztas" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Eszköz / Szolgáltatás</th>
-<th>VLAN</th>
-<th>IP-cím</th>
-<th>Port</th>
-<th>Protokoll</th>
-<th>Megjegyzés</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>MikroTik hAP ax³</td>
-<td>10</td>
-<td>192.168.10.1</td>
-<td>-</td>
-<td>-</td>
-<td>Központi Router / Gateway</td>
-</tr>
-<tr>
-<td>CSS610 Switch</td>
-<td>10</td>
-<td>192.168.10.2</td>
-<td>-</td>
-<td>HTTP</td>
-<td>Menedzsment felület (SwOS)</td>
-</tr>
-<tr>
-<td>Ubuntu Fő Szerver</td>
-<td>10</td>
-<td>192.168.10.10</td>
-<td>22</td>
-<td>SSH</td>
-<td>Docker és KVM Host</td>
-</tr>
-<tr>
-<td>Raspberry Pi 4</td>
-<td>10</td>
-<td>192.168.10.11</td>
-<td>53</td>
-<td>DNS</td>
-<td>Pi-hole (Elsődleges DNS)</td>
-</tr>
-<tr>
-<td>Portainer GUI</td>
-<td>10</td>
-<td>192.168.10.10</td>
-<td>9000</td>
-<td>HTTP</td>
-<td>Docker menedzsment</td>
-</tr>
-<tr>
-<td>SWAG (Proxy)</td>
-<td>10</td>
-<td>192.168.10.10</td>
-<td>443</td>
-<td>HTTPS</td>
-<td>SSL/Reverse Proxy kapu</td>
-</tr>
-<tr>
-<td>Authentik</td>
-<td>10</td>
-<td>192.168.10.10</td>
-<td>9443</td>
-<td>HTTPS</td>
-<td>SSO Azonosítás</td>
-</tr>
-<tr>
-<td>Nextcloud</td>
-<td>10</td>
-<td>192.168.10.10</td>
-<td>444</td>
-<td>HTTPS</td>
-<td>Adatfelhő és fájlok</td>
-</tr>
-<tr>
-<td>Jellyfin</td>
-<td>10</td>
-<td>192.168.10.10</td>
-<td>8096</td>
-<td>HTTP</td>
-<td>Médiaszerver</td>
-</tr>
-<tr>
-<td>Home Assistant</td>
-<td>10</td>
-<td>192.168.10.10</td>
-<td>8123</td>
-<td>HTTP</td>
-<td>Okosotthon központ</td>
-</tr>
-<tr>
-<td>qBittorrent</td>
-<td>10</td>
-<td>192.168.10.10</td>
-<td>8080</td>
-<td>HTTP</td>
-<td>Letöltő kliens</td>
-</tr>
-<tr>
-<td>Sonarr / Radarr</td>
-<td>10</td>
-<td>192.168.10.10</td>
-<td>8989/7878</td>
-<td>HTTP</td>
-<td>Média automatizáció</td>
-</tr>
-<tr>
-<td>Immich</td>
-<td>10</td>
-<td>192.168.10.10</td>
-<td>2283</td>
-<td>HTTP</td>
-<td>Fotómentés és galéria</td>
-</tr>
-<tr>
-<td>Kali Linux VM</td>
-<td>10</td>
-<td>192.168.10.50</td>
-<td>-</td>
-<td>-</td>
-<td>Biztonsági teszt VM</td>
-</tr>
-<tr>
-<td>pfSense VM</td>
-<td>10</td>
-<td>192.168.10.51</td>
-<td>-</td>
-<td>-</td>
-<td>Teszt tűzfal (WAN/LAN)</td>
-</tr>
-<tr>
-<td>Tails / OSINT VM</td>
-<td>10</td>
-<td>192.168.10.52+</td>
-<td>-</td>
-<td>-</td>
-<td>Speciális célú VM-ek</td>
-</tr>
-<tr>
-<td>IP Kamerák</td>
-<td>20</td>
-<td>192.168.20.100+</td>
-<td>-</td>
-<td>RTSP</td>
-<td>IoT szegmens (Frigate)</td>
-</tr>
-</tbody>
-</table>
-<h2 id="vegso-allapot">Végső állapot<a class="headerlink" href="#vegso-allapot" title="Permanent link">&para;</a></h2>
-<p><img alt="Hálózati Topológia" src="../images/network-map-updated.png" /></p>
-<h3 id="vegso-homelab-ip-cim-es-port-kiosztas">🌐 Végső Homelab IP-cím és Port Kiosztás<a class="headerlink" href="#vegso-homelab-ip-cim-es-port-kiosztas" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Eszköz / Szolgáltatás</th>
-<th>VLAN</th>
-<th>IP-cím</th>
-<th>Port</th>
-<th>Megjegyzés</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>MikroTik hAP ax³</td>
-<td>10</td>
-<td>192.168.10.1</td>
-<td>-</td>
-<td>Fő Router / Gateway</td>
-</tr>
-<tr>
-<td>MikroTik CSS610</td>
-<td>10</td>
-<td>192.168.10.2</td>
-<td>-</td>
-<td>10Gb Switch Menedzsment</td>
-</tr>
-<tr>
-<td>Ubuntu Server Host</td>
-<td>10</td>
-<td>192.168.10.10</td>
-<td>22</td>
-<td>Docker &amp; VM Gazdagép</td>
-</tr>
-<tr>
-<td>Raspberry Pi 4</td>
-<td>10</td>
-<td>192.168.10.11</td>
-<td>"53</td>
-<td>80"</td>
-</tr>
-<tr>
-<td>SWAG Proxy</td>
-<td>10</td>
-<td>192.168.10.10</td>
-<td>"80</td>
-<td>443"</td>
-</tr>
-<tr>
-<td>Homepage</td>
-<td>10</td>
-<td>192.168.10.10</td>
-<td>3000</td>
-<td>Fő Dashboard</td>
-</tr>
-<tr>
-<td>Authentik</td>
-<td>10</td>
-<td>192.168.10.10</td>
-<td>9443</td>
-<td>SSO Azonosítás</td>
-</tr>
-<tr>
-<td>Nextcloud</td>
-<td>10</td>
-<td>192.168.10.10</td>
-<td>444</td>
-<td>Fájlfelhő</td>
-</tr>
-<tr>
-<td>Odoo / Paperless</td>
-<td>10</td>
-<td>192.168.10.10</td>
-<td>"8069</td>
-<td>8010"</td>
-</tr>
-<tr>
-<td>Jellyfin</td>
-<td>10</td>
-<td>192.168.10.10</td>
-<td>8096</td>
-<td>Médiaszerver (iGPU Transcode)</td>
-</tr>
-<tr>
-<td>qBittorrent</td>
-<td>10</td>
-<td>192.168.10.10</td>
-<td>8080</td>
-<td>Letöltő kliens</td>
-</tr>
-<tr>
-<td>Sonarr/Radarr/Prowlarr</td>
-<td>10</td>
-<td>192.168.10.10</td>
-<td>"8989</td>
-<td>7878</td>
-</tr>
-<tr>
-<td>Immich</td>
-<td>10</td>
-<td>192.168.10.10</td>
-<td>2283</td>
-<td>Fotó backup &amp; Galéria</td>
-</tr>
-<tr>
-<td>Home Assistant</td>
-<td>10</td>
-<td>192.168.10.10</td>
-<td>8123</td>
-<td>Okosotthon központ</td>
-</tr>
-<tr>
-<td>Frigate / Scrypted</td>
-<td>10</td>
-<td>192.168.10.10</td>
-<td>"5000</td>
-<td>10443"</td>
-</tr>
-<tr>
-<td>GitLab / n8n</td>
-<td>10</td>
-<td>192.168.10.10</td>
-<td>"8081</td>
-<td>5678"</td>
-</tr>
-<tr>
-<td>LibreNMS / Plausible</td>
-<td>10</td>
-<td>192.168.10.10</td>
-<td>"8001</td>
-<td>8002"</td>
-</tr>
-<tr>
-<td>Kali Linux VM</td>
-<td>10</td>
-<td>192.168.10.50</td>
-<td>-</td>
-<td>KVM Virtuális Gép</td>
-</tr>
-<tr>
-<td>pfSense Test VM</td>
-<td>10</td>
-<td>192.168.10.51</td>
-<td>-</td>
-<td>KVM Virtuális Gép</td>
-</tr>
-<tr>
-<td>TraceLabs / CSILinux</td>
-<td>10</td>
-<td>192.168.10.52+</td>
-<td>-</td>
-<td>KVM Virtuális Gép(ek)</td>
-</tr>
-<tr>
-<td>IP Kamerák</td>
-<td>20</td>
-<td>192.168.20.100-110</td>
-<td>554</td>
-<td>RTSP Stream (IoT VLAN)</td>
-</tr>
-</tbody>
-</table>
+<h1 id="raspberry-pi-4-alapveto-homelab-beallitas">Raspberry Pi 4 Alapvető HomeLab Beállítás<a class="headerlink" href="#raspberry-pi-4-alapveto-homelab-beallitas" title="Permanent link">&para;</a></h1>
+<p><em>Előfeltételek:</em></p>
+<ul>
+<li>A Raspberry Pi 4 rendelkezzen telepített operációs rendszerrel (pl. Raspberry Pi OS vagy Ubuntu Server for Pi).</li>
+<li>A felhasználó rendelkezzen sudo jogosultsággal.</li>
+<li>A Pi a hálózatban van (Switch 3-as port) és statikus IP-címmel rendelkezik.</li>
+<li>Docker/Docker Compose telepítve van a Pi-n, mivel a Pi-hole és a többi szolgáltatás is konténerben fut.</li>
+</ul>
+<h2 id="rendszerfrissites-es-alapcsomagok-telepitese">Rendszerfrissítés és Alapcsomagok Telepítése<a class="headerlink" href="#rendszerfrissites-es-alapcsomagok-telepitese" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Frissítjük a csomaglistákat és a telepített csomagokat</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>upgrade<span class="w"> </span>-y
+</span></code></pre></div>
+<ul>
+<li>Telepítjük a szükséges segédeszközöket</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>curl<span class="w"> </span>git<span class="w"> </span>htop<span class="w"> </span>net-tools
+</span></code></pre></div>
+<h2 id="tailscale-telepitese-a-pi-n-biztonsagos-tavoli-eleres">Tailscale Telepítése a Pi-n (Biztonságos Távoli Elérés)<a class="headerlink" href="#tailscale-telepitese-a-pi-n-biztonsagos-tavoli-eleres" title="Permanent link">&para;</a></h2>
+<p>A Tailscale biztosítja a biztonságos távoli elérést a MagicDNS-szel együtt, ami megkönnyíti a szolgáltatások elérését a belső hálózaton kívülről.</p>
+<ul>
+<li>Telepítjük a Tailscale szkripttel</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://tailscale.com/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+</span></code></pre></div>
+<ul>
+<li>Bejelentkezés a Tailscale hálózatba. - Ez kiír egy linket, amit be kell illesztened a böngésződbe a bejelentkezéshez.</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>tailscale<span class="w"> </span>up<span class="w"> </span>--authkey<span class="w"> </span>tskey-yourkey<span class="w"> </span><span class="c1"># Használj Auth Key-t, ha lehetséges</span>
+</span></code></pre></div>
+<p><em>Ha nincs authkey-d, futtasd a sudo tailscale up-ot, és kövesd a konzolon megjelenő bejelentkezési linket.</em></p>
+<h2 id="pi-hole-telepitese-docker-kontenerben">Pi-hole Telepítése Docker Konténerben<a class="headerlink" href="#pi-hole-telepitese-docker-kontenerben" title="Permanent link">&para;</a></h2>
+<p>A Pi-hole a hálózati szintű DNS hirdetésblokkolásért felelős. Mivel a Pi a hálózati DNS-szolgáltató lesz, itt futtatjuk.</p>
+<ul>
+<li>Létrehozzuk a Pi-hole mappa struktúrát és bemegyünk a mappába</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/pihole<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/pihole
+</span></code></pre></div>
+<ul>
+<li>Létrehozzuk a docker-compose.yml fájlt (ajánlott egy szerkesztővel, pl. nano)</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>nano<span class="w"> </span>docker-compose.yml
+</span></code></pre></div>
+<p>Példa tartalom YAML:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3&quot;</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nt">services</span><span class="p">:</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="nt">pihole</span><span class="p">:</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pihole</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pihole/pihole:latest</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="c1"># Frissítsd az IP-címet a Pi statikus IP-címére!</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span><span class="c1"># A DNS port (53) a legfontosabb.</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;53:53/tcp&quot;</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;53:53/udp&quot;</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;80:80/tcp&quot;</span><span class="w"> </span><span class="c1"># Webes felület</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">      </span><span class="nt">TZ</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Europe/Budapest&#39;</span><span class="w"> </span><span class="c1"># Állítsd be a megfelelő időzónát</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">      </span><span class="nt">WEBPASSWORD</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;YourStrongAdminPassword&#39;</span><span class="w"> </span><span class="c1"># Állítsd be a saját jelszavad</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="w">      </span><span class="c1"># Opcionális: a Pi-hole upstream DNS szervereinek beállítása</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="w">      </span><span class="c1"># Pl. Cloudflare: DNS1=1.1.1.1; DNS2=1.0.0.1</span>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="w">      </span><span class="c1"># Ha Unboundot használsz, ez a beállítás más lesz (lásd alább!)</span>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="w">    </span><span class="c1"># DHCP hálózaton nem feltétlenül szükséges, de jó, ha van</span>
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="w">    </span><span class="nt">cap_add</span><span class="p">:</span>
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NET_ADMIN</span>
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
+</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;./etc-pihole/:/etc/pihole/&#39;</span>
+</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;./etc-dnsmasq.d/:/etc/dnsmasq.d/&#39;</span>
+</span></code></pre></div>
+<ul>
+<li>A Pi-hole indítása</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</span></code></pre></div>
+<h2 id="unbound-telepitese">Unbound Telepítése<a class="headerlink" href="#unbound-telepitese" title="Permanent link">&para;</a></h2>
+<p>Ahogy korábban említettük, az Unbound hozzáadásával a Pi-hole nem a szolgáltató DNS-ére támaszkodik, hanem közvetlenül a gyökérszerverekhez fordul, növelve az adatvédelmet. Ha az Unboundot is a Pi-n konténerben futtatod, a Pi-hole beállítást módosítanod kell, hogy az Unbound felé mutasson.</p>
+<ul>
+<li>Készítsünk egy külön mappát az Unboundnak</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/unbound<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/unbound
+</span></code></pre></div>
+<ul>
+<li>Itt is létrehozunk egy docker-compose.yml fájlt</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>nano<span class="w"> </span>docker-compose.yml
+</span></code></pre></div>
+<p>Példa tartalom YAML:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.5&quot;</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nt">services</span><span class="p">:</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span><span class="nt">unbound</span><span class="p">:</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unbound</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mvance/unbound:latest</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;5335:5335/udp&quot;</span><span class="w"> </span><span class="c1"># Ezen a porton fogja elérni a Pi-hole</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./config:/opt/unbound/etc/unbound/</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
+</span></code></pre></div>
+<ul>
+<li>Az Unbound indítása</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>sudo<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</span></code></pre></div>
+<h2 id="pi-hole-konfiguracio-modositasa-az-unbound-hasznalathoz">Pi-hole konfiguráció módosítása az Unbound használathoz<a class="headerlink" href="#pi-hole-konfiguracio-modositasa-az-unbound-hasznalathoz" title="Permanent link">&para;</a></h2>
+<p>Módosítsd a Pi-hole webes felületén az Upstream DNS szervert a Pi-hole konténerből elérhető Unbound IP-jére és portjára (pl. 127.0.0.1#5335 vagy a Pi belső IP-címe 5335-ös porton, ha külön hálózaton futnak).</p>
+<h2 id="tovabbi-pi-szolgaltatasok-telepitese">További Pi-szolgáltatások Telepítése<a class="headerlink" href="#tovabbi-pi-szolgaltatasok-telepitese" title="Permanent link">&para;</a></h2>
+<h3 id="pialert-telepitese-halozati-eszkozok-monitorozasa">Pi.alert telepítése (hálózati eszközök monitorozása)<a class="headerlink" href="#pialert-telepitese-halozati-eszkozok-monitorozasa" title="Permanent link">&para;</a></h3>
+<p>A Pi.alert a Git-klónozás után egy telepítő szkripttel futtatható</p>
+<ul>
+<li>Menjünk a felhasználói könyvtárunkba</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nb">cd</span><span class="w"> </span>~
+</span></code></pre></div>
+<ul>
+<li>Klónozzuk a Pi.Alert repository-t</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/jokob-sk/Pi.Alert.git
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nb">cd</span><span class="w"> </span>Pi.Alert
+</span></code></pre></div>
+<ul>
+<li>Indítjuk a telepítést (ez végigvezet a konfiguráción)</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>sudo<span class="w"> </span>./install.sh
+</span></code></pre></div>
+<p>Miután a Pi-hole fut, győződj meg róla, hogy a MikroTik routeren a DHCP-beállításokban a DNS-szerver a Raspberry Pi statikus IP-címére mutat. Ezzel válik a Pi-hole a teljes hálózat hirdetésblokkolójává.</p>
 
 
 
@@ -1690,7 +1553,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Élőláb" >
         
           
-          <a href="../overview/" class="md-footer__link md-footer__link--prev" aria-label="Előző: Áttekintés">
+          <a href="../switch/" class="md-footer__link md-footer__link--prev" aria-label="Előző: Switch">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1700,20 +1563,20 @@
                 Előző
               </span>
               <div class="md-ellipsis">
-                Áttekintés
+                Switch
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../network-setup/device-connections/" class="md-footer__link md-footer__link--next" aria-label="Következő: Eszközök megfelelő kötése">
+          <a href="../home-server/" class="md-footer__link md-footer__link--next" aria-label="Következő: Home Server">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Következő
               </span>
               <div class="md-ellipsis">
-                Eszközök megfelelő kötése
+                Home Server
               </div>
             </div>
             <div class="md-footer__button md-icon">
