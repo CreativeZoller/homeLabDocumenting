@@ -7,11 +7,15 @@ theme:
   language: hu
   features:
     - navigation.tabs           # Felső fülek a navigációhoz
+    - navigation.sections       # Felső navigáció szekciókra bontva
     - navigation.expand         # Automatkus lenyíló almenük
     - navigation.indexes        # 'index.md' fájlok használata mappák főoldalaként
+    - navigation.footer         # Előző/Következő linkek az oldal alján
     - search.suggest            # Keresési javaslatok
     - search.highlight          # Találatok kiemelése
     - content.code.annotate     # Kódrészletek annotálása
+    - navigation.top            # Oldalsó navigáció elrejtése, felső menü
+    - toc.follow                # Jobb oldali tartalomjegyzék követi a görgetést
   
   # Színpaletta (könnyű váltás világos/sötét mód között)
   palette:
@@ -26,6 +30,8 @@ theme:
 
 # --- MARKDOWN BŐVÍTMÉNYEK ---
 markdown_extensions:
+  - toc:
+      permalink: true           # Fejléc link ikon a könnyű hivatkozáshoz
   - attr_list
   - pymdownx.details
   - pymdownx.superfences
@@ -41,13 +47,24 @@ markdown_extensions:
 
 # --- NAVIGÁCIÓ (A TARTALOMJEGYZÉK) ---
 nav:
-  - Kezdőlap: index.md
-  - 🏡 Hálózati Topológia: 
+  - 🏠 Kezdőlap: index.md
+  - Áttekintés:
+    - Home Lab fogalma és célja: overview/index-overview.md
+    - Home Lab előnyei és kihívásai: overview/benefits-challenges.md
+  - Tervezés:
+    - Célok és követelmények: planning/goals-requirements.md
+    - Hálózati tervezés: planning/network-design.md
+    - Hardver kiválasztás: planning/hardware-selection.md
+    - Szoftver és szolgáltatások: planning/software-services.md
+  - Hálózati Topológia: 
     - Áttekintés: network/overview.md
     - Fizikai Diagram: network/physical-diagram.md
-    - Alhálózatok: network/subnets.md
-  - 🖥️ Szerverek és Hardver:
-    - Hardware BOM: hardware/bom.md
-    - Proxmox: hardware/proxmox.md
-  - ☁️ Szolgáltatások (VM-ek/Docker): services/index.md
-  - 🔐 Biztonsági Szabályok: security.md
+  - Hálózat telepítése:
+    - Eszközök megfelelő kötése: network-setup/device-connections.md
+  - Eszközök telepítése:
+    - Router: device-setup/router.md    
+    - Switch: device-setup/switch.md
+    - Raspberry Pi: device-setup/raspberry-pi.md
+    - Home Server: device-setup/home-server.md
+    - NAS: device-setup/nas.md
+    

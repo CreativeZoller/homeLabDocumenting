@@ -1,17 +1,7 @@
-# Welcome to MkDocs
+# Üdvözlöm a Home Lab Dokumentációban
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+Itt részletes információkat talál a Home Lab dokumentálásomról, előnyeiről, hátrányairól, felhasználási területeiről, topológiai kialakításairól, s mindenről, ami egy kezdő Home Lab megtervezésére és megalkotására, megépítésére és konfigurálására elegendő lehet.
 
-## Commands
+## Navigáció
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+Válasszon a menüpontokból, hogy könnyen navigálhasson a fejezetek és szekciók között.
