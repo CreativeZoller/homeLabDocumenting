@@ -1,9 +1,6 @@
 # 🖥️ NAS - Appok telepítése és beállítása
 
-Ahhoz, hogy a NAS-t kényelmesen használd is, van két apró, de kritikus lépés, amit érdemes megtenni, mielőtt fejest ugrasz a Portainerbe:
-
-- *Samba (SMB) megosztás:* Hogy a Windowsos gépedről vagy laptopodról egyszerűen rá tudj másolni fájlokat a 12 TB-os lemezre.
-- *Docker jogosultságok:* Biztosítani kell, hogy a Docker konténereknek legyen joguk írni/olvasni a ZFS mappákba.
+Ahhoz, hogy a NAS-t kényelmesen használd, két lépés a Portainer előtt: Samba a ZFS poolra, és Docker jogosultságok a `/tank` alatt. A cél pool 2× 12 TB IronWolf mirror; a Samba a `/tank/media` mappát osztja. A konténereknek írniuk/olvasniuk kell a ZFS dataseteket (PUID/PGID 1000).
 
 ## NAS Elérése (Samba megosztás)
 
@@ -111,7 +108,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/Budapest
+      - TZ=Europe/Vienna
       - URL=sajatdomened.hu # Cseréld ki!
       - SUBDOMAINS=wildcard
       - VALIDATION=dns
@@ -177,7 +174,7 @@ services:
     image: jellyfin/jellyfin
     container_name: jellyfin
     devices:
-      - /dev/dri:/dev/dri # i5-12600 GPU gyorsítás
+      - /dev/dri:/dev/dri # i5-12400 iGPU transcode
     volumes:
       - /tank/config/jellyfin:/config
       - /tank/media:/media
@@ -244,7 +241,7 @@ services:
 
 NextCloud és a Paperless-ngx a dokumentumaid digitális kezeléséhez.
 
-*Portainer -> Stacks -> Add stack ->* Név: media
+*Portainer -> Stacks -> Add stack ->* Név: cloud-office
 
 ```yaml
 version: "3"

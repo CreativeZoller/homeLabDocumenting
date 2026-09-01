@@ -1,19 +1,21 @@
-# Célok és Követelmények: A HomeLab feladatai
+# 🎯 Célok és követelmények
 
-A HomeLab elsődleges célja egy személyes, biztonságos, nagyteljesítményű és rugalmas otthoni IT-infrastruktúra biztosítása. Jelenleg a fókusz a média, az automatizálás és a hálózati kontroll terén van, de a terv magában foglalja a tanulást és a jövőbeni bővítést is.
+A HomeLab elsődleges célja egy személyes, biztonságos, rugalmas otthoni IT-infrastruktúra. A fókusz: média, automatizálás, hálózati kontroll, tanulás, későbbi bővítés. A 2.6-os fizikai keret: 10" rack a home server mellett (költség, hely, zaj).
 
-## 🎯 Jelenlegi Célok
+## Jelenlegi célok
 
-- *Adattárolás és Média:* Központi adattárolás (12 TB ZFS pool ) a szerverben. Média szerver üzemeltetése (Jellyfin, Audiobookshelf ) a tartalmak streamingjéhez.
-- *Adatkontroll és Biztonság:* Saját jelszótároló (Vaultwarden ) és saját felhő (Nextcloud ) üzemeltetése a szuverenitás érdekében. Hálózati hirdetésblokkolás (Pi-hole ).
-- *Otthoni Automatizálás:* Központi Home Assistant  futtatása (Docker) az okoseszközök menedzselésére.
-- *Távoli Elérés:* Biztonságos távoli hozzáférés biztosítása a teljes hálózathoz a Tailscale használatával (MagicDNS-szel ).
-- *Szolgáltatáskezelés:* Minden szolgáltatás Docker konténerben fut Portainer felületen keresztül a könnyű telepítés és karbantartás érdekében.
+- **Adattárolás és média:** 2× 12 TB IronWolf ZFS mirror a szerverben. Jellyfin, Audiobookshelf.
+- **Adatkontroll és biztonság:** Vaultwarden, Nextcloud, Pi-hole. Tűzfal: Firewalla Gold Plus, VLAN 10/20/30/40.
+- **Otthoni automatizálás:** Home Assistant Dockerben (később Yeelight / Groove LED).
+- **Távoli elérés:** Tailscale (MagicDNS). Publikus port forward csak ha muszáj.
+- **Szolgáltatáskezelés:** Docker + Portainer. Compute: Ubuntu Server + KVM a home serveren.
 
-## ✨ Jövőbeli Célok és Követelmények
+## Jövőbeli célok
 
-- *Virtualizáció és Tesztelés:* Virtuális gépek (VM-ek) futtatása tanulási és tesztelési célokra (pl. Kali Linux és TS OLINT ). Ehhez KVM/QEMU telepítése, egy dedikált ZFS dataset (tank/vm ) és bridge hálózat (br0 ) szükséges.
-- *Rendszerfelügyelet:* Részletes hálózati monitorozás (LibreNMS ) és szolgáltatás állapotfigyelés (Uptime Kuma ).
-- *Web Analytics:* Saját, szuverén webanalitika (Plausible ) hosztolása.
-- *Bővíthetőség:* A D-Link switch SFP portja  későbbi 10 Gbps-os bővítés lehetőségét jelzi.
-- *Menedzselés:* A vast collection of business apps can be held and ran locally (Odoo ).
+- **Virtualizáció a home serveren:** Kali, OSINT, teszt VM-ek. ZFS `tank/vm`, bridge `br0`.
+- **Proxmox cluster:** 3 mini-PC, a home server NAS szerepe DAS/JBOD felé vihető. Nem a mostani Ubuntu host cseréje.
+- **Felügyelet:** LibreNMS, Uptime Kuma, Plausible.
+- **Üzlet:** Odoo helyben.
+- **Munkaállomás:** asztal, KVM, ergonómia — 2.0 2–4. fázis, a 2.6 nem változtatta.
+
+A D-Link / 10 Gbps SFP bővítés **nem** cél. A gerinc 1 GbE (UniFi Lite 16), 2.5G a Firewalla ↔ szerver linken.

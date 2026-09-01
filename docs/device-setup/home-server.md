@@ -1,116 +1,64 @@
-# 🖥️ HomeLab Fő Szerver Tervezés: OS, ZFS és Virtualizáció
+# 🖥️ HomeLab fő szerver: OS, ZFS és virtualizáció
+
+Cél hardver: Mini-ITX Szerver (Intel i5-12400, Noctua NH-L12S, 64 GB DDR4-3200, VGA kártya nélkül, 2× Intel I226-V 2.5G NIC, 2× 12 TB IronWolf ZFS-hez), Ubuntu Server LTS OS, a Proxmox cluster külön, jövőbeli 3 node képében valósul meg. Lásd [Jövőbeli bővítés](../planning/future.md).
 
 Feltételezések:
 
-- Ubuntu Server LTS telepítve az NVMe lemezre.
-- A 12 TB-os HDD elérhető a rendszer számára (pl. /dev/sdX).
-- A fizikai hálózati interfész neve: eno1.
+- Ubuntu Server LTS az NVMe-n.
+- Két 12 TB HDD a rendszernek (ZFS mirror).
+- NIC nevek: `enp1s0` (2.5G → Firewalla, opcionális) és `enp2s0` (1G → UniFi). A valós neveket `ip -br link` adja.
 
-### Dedikált Felhasználó Létrehozása (homelab)
-
-Ezt a felhasználót fogjuk használni a további beállításokhoz.
+## Dedikált felhasználó (homelab)
 
 ```bash
-# 1. Hozzuk létre a 'homelab' felhasználót
 sudo adduser homelab
-
-# 2. Adjuk hozzá a 'homelab' felhasználót a 'sudo' csoporthoz (admin jogosultságok)
 sudo usermod -aG sudo homelab
-
-# 3. Váltás az új felhasználóra
 su - homelab
-
-# (Mostantól minden parancsot a 'homelab' felhasználóval és szükség esetén 'sudo'-val futtatunk!)
 ```
 
-### Rendszerfrissítés és Alapvető Eszközök Telepítése
+## Rendszerfrissítés és alapok
 
 ```bash
-# Rendszerfrissítés
 sudo apt update && sudo apt upgrade -y
-
-# Alapvető segédprogramok és tűzfal telepítése
 sudo apt install -y curl git htop net-tools openssh-server ufw
-
-# UFW (Tűzfal) beállítása: Engedélyezzük az SSH-t és a kritikus portokat
-# (A többi Docker szolgáltatás portját a SWAG Reverse Proxy fogja kezelni, és csak a 443-as portot nyitjuk ki az internet felé!)
-sudo ufw allow 22/tcp  # SSH hozzáférés engedélyezése
+sudo timedatectl set-timezone Europe/Vienna
+sudo ufw allow 22/tcp
 sudo ufw enable
 ```
 
-### ZFS Pool Létrehozása és Datasetek Szegmentálása (NAS)
+A Docker szolgáltatások portját a SWAG kezeli. Az internet felé a Firewalla engedélyez portot, nem az UFW a WAN-on.
+
+## ZFS pool (két IronWolf, mirror)
+
+A 2.0 két 12 TB lemezt rendel. Mirror: egy lemez kieshet adatvesztés nélkül. A későbbi DAS/JBOD átalakítás: [Jövőbeli bővítés](../planning/future.md).
 
 ```bash
-# 1. ZFS csomagok telepítése
 sudo apt install zfsutils-linux -y
-
-# 2. Lemezazonosító megkeresése (EZT ELLENŐRIZD!)
-# PÉLDA: a 12 TB-os HDD legyen /dev/sdX (a valós nevet írd be helyette)
 sudo fdisk -l
-ls -l /dev/disk/by-id/ 
+ls -l /dev/disk/by-id/
+```
 
-# 3. Pool létrehozása a lemezen (tank)
-# CSERÉLD KI a /dev/sdX-et a 12 TB-os lemez VALÓS eszközazonosítójára!
-sudo zpool create -f tank /dev/sdX
+A `/dev/sdX` helyett mindig a `/dev/disk/by-id/` azonosítót használd.
 
-# 4. Alapértelmezett ZFS tulajdonságok beállítása (tömörítés, hozzáférési idők)
+```bash
+sudo zpool create -f tank mirror /dev/disk/by-id/ata-...lemez1 /dev/disk/by-id/ata-...lemez2
 sudo zfs set compression=lz4 tank
 sudo zfs set atime=off tank
-
-# 5. Datasetek létrehozása a struktúrának megfelelően
 sudo zfs create tank/media
 sudo zfs create tank/config
 sudo zfs create tank/containers
 sudo zfs create tank/vm
 sudo zfs create tank/backups
-
-# 6. VM dataset optimalizálása és korlátozása
 sudo zfs set recordsize=128k tank/vm
-sudo zfs set quota=500G tank/vm # Példa: 500 GB kvóta
-
-# 7. Jogosultságok beállítása a 'homelab' felhasználónak
+sudo zfs set quota=500G tank/vm
 sudo chown -R homelab:homelab /tank/
 ```
 
-### ZFS Pool Létrehozása és Datasetek Szegmentálása (NAS)
+Egyetlen lemezes pool csak ideiglenes; a második IronWolf érkezésekor `zpool attach`.
+
+## Docker és Portainer
 
 ```bash
-# 1. ZFS csomagok telepítése
-sudo apt install zfsutils-linux -y
-
-# 2. Lemezazonosító megkeresése (EZT ELLENŐRIZD!)
-# PÉLDA: a 12 TB-os HDD legyen /dev/sdX (a valós nevet írd be helyette)
-sudo fdisk -l
-ls -l /dev/disk/by-id/ 
-
-# 3. Pool létrehozása a lemezen (tank)
-# CSERÉLD KI a /dev/sdX-et a 12 TB-os lemez VALÓS eszközazonosítójára!
-sudo zpool create -f tank /dev/sdX
-
-# 4. Alapértelmezett ZFS tulajdonságok beállítása (tömörítés, hozzáférési idők)
-sudo zfs set compression=lz4 tank
-sudo zfs set atime=off tank
-
-# 5. Datasetek létrehozása a struktúrának megfelelően
-sudo zfs create tank/media
-sudo zfs create tank/config
-sudo zfs create tank/containers
-sudo zfs create tank/vm
-sudo zfs create tank/backups
-
-# 6. VM dataset optimalizálása és korlátozása
-sudo zfs set recordsize=128k tank/vm
-sudo zfs set quota=500G tank/vm # Példa: 500 GB kvóta
-
-# 7. Jogosultságok beállítása a 'homelab' felhasználónak
-sudo chown -R homelab:homelab /tank/
-```
-
-### Docker és Portainer Telepítése
-
-```bash
-# 1. Docker telepítése (a hivatalos Docker repository-ból)
-# (A curl, gnupg, ca-certificates már telepítve van)
 for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do sudo apt remove $pkg; done
 
 sudo install -m 0755 -d /etc/apt/keyrings
@@ -119,20 +67,14 @@ sudo chmod a+r /etc/apt/keyrings/docker.gpg
 
 echo \
   "deb [arch=\"$(dpkg --print-architecture)\" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 sudo apt update
 sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
-
-# 2. Hozzáadás a docker csoporthoz (hogy ne kelljen sudo-t használni)
 sudo usermod -aG docker homelab
-
-# 3. Portainer (A Docker GUI menedzsment) telepítése
-# Hozzunk létre egy kötetet a Portainer adatainak
 docker volume create portainer_data
-
-# Futtassuk a Portainer-t
+docker network create proxy-tier
 docker run -d -p 9000:9000 -p 9443:9443 --name portainer \
     --restart=always \
     -v /var/run/docker.sock:/var/run/docker.sock \
@@ -140,70 +82,53 @@ docker run -d -p 9000:9000 -p 9443:9443 --name portainer \
     portainer/portainer-ce:latest
 ```
 
-Mielőtt a következő lépésre lépnél, KI KELL LÉPNED ÉS VISSZA KELL LÉPNED az SSH/konzol munkamenetbe, hogy az új docker és libvirt csoport tagságok érvénybe lépjenek!
+Logout, majd új SSH a `homelab` userrel, hogy a `docker` csoport éljen.
 
-```bash
-logout
-# (újra SSH-zz be 'homelab' felhasználóval)
-```
+## Hálózat: dual NIC és bridge a VM-eknek
 
-### KVM/QEMU Virtualizáció Telepítése és Hálózat Beállítása
+A 2.5G haszna a Firewalla közvetlen linken van. A switch felé 1 GbE.
 
-```bash
-# 1. KVM/QEMU és kiegészítők telepítése
-sudo apt install -y qemu-kvm libvirt-daemon-system libvirt-clients virtinst bridge-utils
-
-# 2. Felhasználó hozzáadása a libvirt csoporthoz (!!! EZT CSAK A BIZTONSÁG KEDVÉÉRT ISMÉTLJÜK !!!)
-sudo usermod -aG libvirt homelab
-
-# 3. KVM és libvirt szolgáltatások ellenőrzése
-kvm-ok
-sudo systemctl enable --now libvirtd
-```
-
-Bridge Hálózat Beállítása (br0) a VM-eknek
-
-```bash
-# 1. Netplan konfigurációs fájl megnyitása
-sudo nano /etc/netplan/01-br.yaml
-```
-
-Tartalom (A hálózati kártyád neve (eno1) cserélendő!):
+Példa Netplan (`/etc/netplan/01-br.yaml`) — a interfészneveket cseréld:
 
 ```yaml
 network:
   version: 2
   renderer: networkd
   ethernets:
-    eno1:
-      dhcp4: no       # DHCP kikapcsolása a fizikai interfészen
+    enp1s0:
+      dhcp4: no
+    enp2s0:
+      dhcp4: no
   bridges:
     br0:
-      interfaces: [eno1] # A fizikai interfész hozzáadása a bridge-hez
-      dhcp4: yes       # DHCP kérés a bridge interfészen
+      interfaces: [enp2s0]
+      dhcp4: no
+      addresses: [192.168.10.10/24]
+      routes:
+        - to: default
+          via: 192.168.10.1
+      nameservers:
+        addresses: [192.168.10.11, 192.168.10.1]
       parameters:
-        stp: true
+        stp: false
         forward-delay: 0
 ```
 
-```bash
-# 2. Konfiguráció alkalmazása (a kapcsolat rövid időre megszakadhat!)
-sudo netplan apply
+Ha a 2.5G Firewalla-link be van kötve, `enp1s0` kaphat külön címet vagy bond/metric TBD. Első körben elég a `br0` a switches NIC-en, hogy a KVM vendégek a VLAN 10-en jelenjenek meg.
 
-# 3. Ellenőrzés
+```bash
+sudo netplan apply
 ip a show br0
 ```
 
-### Speciális VM-ek Előkészítése (virt-install)
-
-Készítsd elő az ISO fájlok tárolására szolgáló mappát, és másold be ide a letöltött ISO fájlokat (Kali, pfSense, Tails, Trace Labs, CSILinux).
+## KVM/QEMU
 
 ```bash
-# Mappa az ISO-knak
+sudo apt install -y qemu-kvm libvirt-daemon-system libvirt-clients virtinst bridge-utils
+sudo usermod -aG libvirt homelab
+kvm-ok
+sudo systemctl enable --now libvirtd
 mkdir -p /tank/vm/iso
-
-# 1. Libvirt hálózati bridge definiálása
-# Ez csak megerősíti a Netplan beállítást.
 sudo virsh net-define /dev/stdin <<EOF
 <network>
   <name>br0_network</name>
@@ -215,14 +140,13 @@ sudo virsh net-start br0_network
 sudo virsh net-autostart br0_network
 ```
 
-#### VM Telepítési Sablonok (virt-install)
+### VM sablonok (virt-install)
 
-Ezek a parancsok elindítják a VM telepítését. A --graphics none beállítás miatt a telepítést a konzolon keresztül tudod követni.
+ISO-k: `/tank/vm/iso/`. `--graphics none` = konzolos telepítés.
 
-##### Kali Linux (IT Biztonság)
+Kali:
 
 ```bash
-# --disk: egy 50 GB-os fájl jön létre a ZFS /tank/vm/ dataseten
 sudo virt-install \
     --name Kali_Linux \
     --os-variant debian12 \
@@ -236,16 +160,15 @@ sudo virt-install \
     --extra-args 'console=tty0 console=ttyS0,115200n8'
 ```
 
-##### pfSense (Teszt Tűzfal/Router)
+Teszt tűzfal VM (tanulás, nem a produkciós Firewalla helyettesítője):
 
 ```bash
-# Két hálózati interfész beállítása a WAN/LAN szimulációhoz
 sudo virt-install \
-    --name pfSense_Router \
+    --name Test_Firewall \
     --os-variant freebsd12 \
     --ram 2048 \
     --vcpus 1 \
-    --disk path=/tank/vm/pfsense.qcow2,size=20,bus=virtio \
+    --disk path=/tank/vm/testfw.qcow2,size=20,bus=virtio \
     --network bridge=br0,model=virtio \
     --network bridge=br0,model=virtio \
     --graphics none \
@@ -254,54 +177,4 @@ sudo virt-install \
     --extra-args 'console=tty0 console=ttyS0,115200n8'
 ```
 
-##### Tails VM (Anonimitás / Adatvédelem)
-
-A Tails általában Live módban fut. Itt a telepítési folyamatot indítjuk, de meg kell győződni arról, hogy az adott Tails verzió támogatja-e a tartós telepítést.
-
-```bash
-sudo virt-install \
-    --name Tails_Anon \
-    --os-variant debian12 \
-    --ram 2048 \
-    --vcpus 2 \
-    --disk path=/tank/vm/tails.qcow2,size=30,bus=virtio \
-    --network bridge=br0 \
-    --graphics none \
-    --console pty,target_type=serial \
-    --location /tank/vm/iso/tails-latest.iso \
-    --extra-args 'console=tty0 console=ttyS0,115200n8'
-```
-
-##### Trace Labs OSINT VM (Nyílt Forrású Hírszerzés)
-
-```bash
-sudo virt-install \
-    --name TraceLabs_OSINT \
-    --os-variant debian12 \
-    --ram 4096 \
-    --vcpus 2 \
-    --disk path=/tank/vm/tracelabs.qcow2,size=60,bus=virtio \
-    --network bridge=br0 \
-    --graphics none \
-    --console pty,target_type=serial \
-    --location /tank/vm/iso/tracelabs-osint-latest.iso \
-    --extra-args 'console=tty0 console=ttyS0,115200n8'
-```
-
-##### CSILinux VM (Kibernetikai Nyomozás)
-
-```bash
-sudo virt-install \
-    --name CSILinux \
-    --os-variant debian12 \
-    --ram 4096 \
-    --vcpus 2 \
-    --disk path=/tank/vm/csilinux.qcow2,size=60,bus=virtio \
-    --network bridge=br0 \
-    --graphics none \
-    --console pty,target_type=serial \
-    --location /tank/vm/iso/csilinux-latest.iso \
-    --extra-args 'console=tty0 console=ttyS0,115200n8'
-```
-
-Ezzel a listával a fő szerver teljesen be van állítva a ZFS tárolásra, a Docker konténerek futtatására és a speciális biztonsági/vizsgálati virtuális gépek kezelésére.
+Tails, Trace Labs OSINT, CSILinux ugyanazzal a mintával (`/tank/vm/…`, 2–4 GB RAM, `bridge=br0`). A produkciós routing a Firewalla, ezek labor VM-ek.

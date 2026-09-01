@@ -6,14 +6,14 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="A Home Lab hálózat, hardver és szoftver leírása, részletes és valós idejű dokumentációval.">
+        <meta name="description" content="A Home Lab hálózat, hardver és szoftver leírása a v2.0 + v2.6 terv szerint.">
       
       
       
         <link rel="canonical" href="https://github.com/CreativeZoller/homeLabDocumenting/network/overview/">
       
       
-        <link rel="prev" href="../..">
+        <link rel="prev" href="../../planning/future/">
       
       
         <link rel="next" href="../physical-diagram/">
@@ -76,6 +76,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#topologia" class="md-skip">
+          Kihagyás
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -225,19 +230,17 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../overview/index-overview/" class="md-tabs__link">
           
   
   
     
   
-  🏡 Hálózati Topológia
+  Áttekintés
 
         </a>
       </li>
@@ -253,13 +256,37 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../hardware/bom/" class="md-tabs__link">
+        <a href="../../planning/goals-requirements/" class="md-tabs__link">
           
   
   
     
   
-  🖥️ Szerverek és Hardver
+  Tervezés
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Hálózati topológia
 
         </a>
       </li>
@@ -272,17 +299,20 @@
   
   
   
-    <li class="md-tabs__item">
-      <a href="../../services/" class="md-tabs__link">
-        
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../network-setup/device-connections/" class="md-tabs__link">
+          
   
   
     
   
-  ☁️ Szolgáltatások (VM-ek/Docker)
+  Hálózat telepítése
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
   
 
       
@@ -291,17 +321,64 @@
   
   
   
-    <li class="md-tabs__item">
-      <a href="../../security/" class="md-tabs__link">
-        
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../device-setup/router/" class="md-tabs__link">
+          
   
   
     
   
-  🔐 Biztonsági Szabályok
+  Eszközök
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../infrastructure/rack/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Infrastruktúra
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../workstation/desk-kvm/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Munkaállomás
+
+        </a>
+      </li>
+    
   
 
       
@@ -369,14 +446,10 @@
       
   
   
-    
   
   
-  
     
     
-      
-        
       
         
       
@@ -386,27 +459,28 @@
     
     
       
-        
-        
       
+        
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
     
   
-    🏡 Hálózati Topológia
+    Áttekintés
   
 
     
@@ -417,12 +491,411 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
   
-    🏡 Hálózati Topológia
+    Áttekintés
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/index-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Lab fogalma és célja
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/benefits-challenges/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Előnyök és kihívások
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tervezés
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tervezés
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../planning/goals-requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Célok és követelmények
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../planning/phases-bom/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fázisok és BOM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../planning/network-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hálózati tervezés
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../planning/hardware-selection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hardver kiválasztás
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../planning/software-services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Szoftver és szolgáltatások
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../planning/funding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pályázatok
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../planning/future/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Jövőbeli bővítés
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hálózati topológia
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Hálózati topológia
   
 
           </label>
@@ -441,6 +914,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Áttekintés
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -458,6 +951,97 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tartalomjegyzék">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-logikai-felepites-pillerei" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A logikai felépítés pillérei
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A logikai felépítés pillérei">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-a-firewalla-mint-agy-l3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. A Firewalla mint agy (L3)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-az-unifi-switch-mint-gerinc-l2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Az UniFi switch mint gerinc (L2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-az-ubuntu-szerver-hibrid-vegpont" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Az Ubuntu szerver: hibrid végpont
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#biztonsagi-zonak" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Biztonsági zónák
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kabelezesi-segedlet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kábelezési segédlet
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -478,35 +1062,7 @@
   <span class="md-ellipsis">
     
   
-    Fizikai Diagram
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../subnets/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Alhálózatok
+    Fizikai diagram
   
 
     
@@ -538,12 +1094,12 @@
       
         
       
+    
+    
+    
+      
+      
         
-      
-    
-    
-    
-      
       
     
     
@@ -553,17 +1109,17 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
     
   
-    🖥️ Szerverek és Hardver
+    Hálózat telepítése
   
 
     
@@ -574,12 +1130,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
   
-    🖥️ Szerverek és Hardver
+    Hálózat telepítése
   
 
           </label>
@@ -592,42 +1148,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../hardware/bom/" class="md-nav__link">
+      <a href="../../network-setup/device-connections/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Hardware BOM
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../hardware/proxmox/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Proxmox
+    Eszközök kötése
   
 
     
@@ -654,15 +1182,83 @@
   
   
   
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Eszközök
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Eszközök
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../services/" class="md-nav__link">
+      <a href="../../device-setup/router/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    ☁️ Szolgáltatások (VM-ek/Docker)
+    Firewalla Gold Plus
   
 
     
@@ -674,22 +1270,23 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="../../security/" class="md-nav__link">
+      <a href="../../device-setup/switch/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    🔐 Biztonsági Szabályok
+    UniFi Lite 16 PoE
   
 
     
@@ -698,6 +1295,342 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../device-setup/unifi-ap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UniFi U7 Pro
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../device-setup/home-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../device-setup/nas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NAS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../device-setup/raspberry-pi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Raspberry Pi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Infrastruktúra
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Infrastruktúra
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../infrastructure/rack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10" rack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../infrastructure/ups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UPS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Munkaállomás
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Munkaállomás
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workstation/desk-kvm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Asztal és KVM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -719,6 +1652,88 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tartalomjegyzék
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-logikai-felepites-pillerei" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A logikai felépítés pillérei
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A logikai felépítés pillérei">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-a-firewalla-mint-agy-l3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. A Firewalla mint agy (L3)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-az-unifi-switch-mint-gerinc-l2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Az UniFi switch mint gerinc (L2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-az-ubuntu-szerver-hibrid-vegpont" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Az Ubuntu szerver: hibrid végpont
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#biztonsagi-zonak" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Biztonsági zónák
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kabelezesi-segedlet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kábelezési segédlet
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -735,9 +1750,48 @@
 
 
 
-  <h1>Áttekintés</h1>
-
-
+<h1 id="topologia">Topológia<a class="headerlink" href="#topologia" title="Permanent link">&para;</a></h1>
+<p>A célállapot egy Firewalla-központú, VLAN-okkal szegmentált hálózat: a routingot és a tűzfalat a Firewalla Gold Plus végzi, a L2 kiosztást az UniFi Lite 16 PoE, a Wi-Fi-t az UniFi U7 Pro.</p>
+<h2 id="a-logikai-felepites-pillerei">A logikai felépítés pillérei<a class="headerlink" href="#a-logikai-felepites-pillerei" title="Permanent link">&para;</a></h2>
+<h3 id="1-a-firewalla-mint-agy-l3">1. A Firewalla mint agy (L3)<a class="headerlink" href="#1-a-firewalla-mint-agy-l3" title="Permanent link">&para;</a></h3>
+<p>A Gold Plus a WAN mögött ül (az osztrák modem nem hidalható). Ő a tűzfal, a DHCP, a VLAN-ok és az inter-VLAN routing.</p>
+<ul>
+<li><strong>VLAN-ok:</strong> 10 Fő, 20 Vendég, 30 IoT, 40 Kliens. A Firewalla válogatja szét a zónákat.</li>
+<li><strong>Inter-VLAN:</strong> alapesetben a VLAN-ok nem látják egymást. A Firewalla szabályai határozzák meg, hogy a Home Assistant (VLAN 10) beláthasson a kamerákhoz (VLAN 30), de a kamerák ne érjék el a szerver konfigurációját.</li>
+<li><strong>2.5G:</strong> a Gold Plus 2.5G portjai. A home server I226-V kártyái ide (vagy a switch 1G portjára) csatlakozhatnak.</li>
+</ul>
+<h3 id="2-az-unifi-switch-mint-gerinc-l2">2. Az UniFi switch mint gerinc (L2)<a class="headerlink" href="#2-az-unifi-switch-mint-gerinc-l2" title="Permanent link">&para;</a></h3>
+<p>A Lite 16 PoE feladata a portok kiosztása, a VLAN tagging és a PoE.</p>
+<ul>
+<li><strong>VLAN tagging:</strong> a port tudja, melyik eszköz hova tartozik. IoT a VLAN 30 access portra, szerver a VLAN 10-re.</li>
+<li><strong>Helyi forgalom:</strong> PC → szerver másolás VLAN 10-en belül a switchen marad. A switch 1 GbE, nem 10G.</li>
+<li><strong>PoE:</strong> az U7 Pro a switchről kap áramot.</li>
+</ul>
+<h3 id="3-az-ubuntu-szerver-hibrid-vegpont">3. Az Ubuntu szerver: hibrid végpont<a class="headerlink" href="#3-az-ubuntu-szerver-hibrid-vegpont" title="Permanent link">&para;</a></h3>
+<p>A szerver egyszerre Docker host és KVM host.</p>
+<ul>
+<li><strong>Docker Bridge:</strong> a konténerek belső hálózaton beszélgetnek. A SWAG a kifelé nyíló kapu.</li>
+<li><strong>KVM Bridge (br0):</strong> a VM-ek (Kali, teszt tűzfal) saját MAC/IP-t kapnak a VLAN 10-en, mintha fizikailag a switchben lennének.</li>
+</ul>
+<h3 id="biztonsagi-zonak">Biztonsági zónák<a class="headerlink" href="#biztonsagi-zonak" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Trusted (VLAN 10):</strong> ZFS, GitLab, Docker menedzsment, admin.</li>
+<li><strong>Guest (VLAN 20):</strong> vendég Wi-Fi / vendég eszközök; csak internet.</li>
+<li><strong>Isolated IoT (VLAN 30):</strong> lámpák, kamerák, szenzorok. Internet alapból tiltva. Home Assistant és Frigate éri el őket.</li>
+<li><strong>Client (VLAN 40):</strong> mindennapi kliensek, elválasztva az admin zónától.</li>
+<li><strong>Public face (SWAG):</strong> az egyetlen pont, ahol a 443-as port az internet felé nyílik (Firewalla port forwardon keresztül, ha kell).</li>
+</ul>
+<h2 id="kabelezesi-segedlet">Kábelezési segédlet<a class="headerlink" href="#kabelezesi-segedlet" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Szolgáltatói modem → Firewalla WAN.</li>
+<li>Firewalla LAN → UniFi Lite 16 PoE (fő uplink).</li>
+<li>Firewalla 2.5G (opcionális) → Home Server NIC 1: a 2.5G adatút a NAS/Docker forgalomnak.</li>
+<li>UniFi Lite 16 PoE → Home Server NIC 2 (menedzsment / tartalék, 1 GbE).</li>
+<li>UniFi Lite 16 PoE PoE port → UniFi U7 Pro.</li>
+<li>UniFi Lite 16 PoE → Raspberry Pi.</li>
+<li>Patch panel: a rack elején a Cat7 keystone-ok fogadják a hosszú kábeleket; belül rövid Cat7 patch.</li>
+</ul>
+<p>Részletek: <a href="../../network-setup/device-connections/">Eszközök kötése</a>.</p>
 
 
 
@@ -758,9 +1812,55 @@
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Vissza a tetejére
+</button>
+        
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Élőláb" >
+        
+          
+          <a href="../../planning/future/" class="md-footer__link md-footer__link--prev" aria-label="Előző: Jövőbeli bővítés">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Előző
+              </span>
+              <div class="md-ellipsis">
+                Jövőbeli bővítés
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../physical-diagram/" class="md-footer__link md-footer__link--next" aria-label="Következő: Fizikai diagram">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Következő
+              </span>
+              <div class="md-ellipsis">
+                Fizikai diagram
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -787,7 +1887,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.expand", "navigation.indexes", "search.suggest", "search.highlight", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "V\u00e1g\u00f3lapra m\u00e1solva", "clipboard.copy": "M\u00e1sol\u00e1s v\u00e1g\u00f3lapra", "search.result.more.one": "1 tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.more.other": "# tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.none": "Nincs tal\u00e1lat", "search.result.one": "1 egyez\u0151 dokumentum", "search.result.other": "# egyez\u0151 dokumentum", "search.result.placeholder": "Keres\u00e9shez \u00edrj ide valamit", "search.result.term.missing": "\u00dcres", "select.version": "Verzi\u00f3v\u00e1lt\u00e1s"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.footer", "search.suggest", "search.highlight", "content.code.annotate", "navigation.top", "toc.follow"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "V\u00e1g\u00f3lapra m\u00e1solva", "clipboard.copy": "M\u00e1sol\u00e1s v\u00e1g\u00f3lapra", "search.result.more.one": "1 tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.more.other": "# tov\u00e1bbi tal\u00e1lat az oldalon", "search.result.none": "Nincs tal\u00e1lat", "search.result.one": "1 egyez\u0151 dokumentum", "search.result.other": "# egyez\u0151 dokumentum", "search.result.placeholder": "Keres\u00e9shez \u00edrj ide valamit", "search.result.term.missing": "\u00dcres", "select.version": "Verzi\u00f3v\u00e1lt\u00e1s"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>

@@ -1,22 +1,16 @@
-# HomeLab fogalma
+# 🏡 HomeLab fogalma (ebben a projektben)
 
-A HomeLab lényegében egy privát, otthoni IT-infrastruktúra, amit hobbiként, tanulási célból, vagy éles, de nem kritikus feladatok futtatására állítanak fel. Ez egy olyan "játszótér", ahol az ember kísérletezhet hálózati beállításokkal, szerverekkel, virtualizációval, és különféle szoftverekkel, anélkül, hogy a fő munkahelyi vagy kritikus rendszereket kockáztatná.
+A HomeLab itt egy konkrét otthoni IT-infrastruktúra: tűzfal, switch, Wi-Fi, szerver, NAS és munkaállomás egy 10" rack körül, nem általános tankönyvi áttekintés.
 
-## 🏡 Mi a HomeLab?
+Röviden: privát lab, ahol a hálózat, a virtualizáció és a self-hosted szolgáltatások éleshez közeli, de otthoni kockázattal futnak.
 
-A HomeLab (Otthoni Labor) alatt egy vagy több, egymással hálózatban lévő számítógépet, szervert, hálózati eszközt (router, switch, tűzfal) és tárolóeszközt (NAS) értünk, melyeket egy magánszemély vagy család üzemeltet otthon.
+## ⚙️ Ami ebből a labből áll
 
-## ⚙️ Miket értünk alatta?
+- **Számítás:** Mini-ITX home server (cél: i5-12400, 64 GB), Ubuntu Server, Docker, KVM. Raspberry Pi 4 a DNS-hez.
+- **Hálózat:** Firewalla Gold Plus, UniFi Lite 16 PoE, UniFi U7 Pro. VLAN 10 Fő, 20 Vendég, 30 IoT, 40 Kliens.
+- **Tárolás:** 2× 12 TB IronWolf ZFS mirror a szerverben; később DAS/JBOD opció.
+- **Ház:** 10" rack UPS-sel és PDU-val a szerver mellett, nem külön szobás 19" szekrény.
 
-A HomeLab sokféle elemből állhat, a komplexitás a felhasználó igényeitől függ:
+A 2.6-os döntés oka: költség, hely, zaj, és hogy a későbbi szervercsere se kényszerítsen nagy rackre.
 
-- Hardver:
-    - *Szerverek:* Régebbi asztali gépek, dedikált mini PC-k (pl. Intel NUC, Raspberry Pi), vagy rack-be szerelhető szerverek.
-    - *Hálózati eszközök:* Kezelt switch-ek (VLAN-okhoz), profi routerek, tűzfalak (pl. pfSense, OPNsense).
-    - *NAS (Network Attached Storage):* Hálózati adattároló, pl. Synology, QNAP, vagy saját építésű FreeNAS/TrueNAS rendszerrel.
-
-- Szoftver és Szolgáltatások:
-    - *Operációs Rendszerek:* Különféle Linux disztribúciók, Windows Server.
-    - *Konténerizáció:* Docker, Kubernetes a szolgáltatások egyszerű telepítésére és futtatására.
-    - *Virtualizáció:* A hardver erőforrásait felosztó szoftverek (pl. Proxmox, VMware ESXi, Hyper-V) több virtuális gép futtatásához.
-    - *Saját szolgáltatások:* Plex Media Server, AdGuard Home (hirdetésblokkoló), VPN-szerver, automatizálási rendszerek (pl. Home Assistant), saját felhő (pl. Nextcloud).
+Általános előnyök és korlátok: [Előnyök és kihívások](benefits-challenges.md).

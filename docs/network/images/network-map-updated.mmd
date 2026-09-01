@@ -1,0 +1,42 @@
+%%{init: {"theme": "neutral", "flowchart": {"htmlLabels": false, "curve": "basis", "nodeSpacing": 30, "rankSpacing": 40}, "themeVariables": {"primaryColor": "#cbb8e8", "primaryBorderColor": "#5b4b8a", "primaryTextColor": "#1a1a1a", "lineColor": "#222222", "clusterBkg": "#fff7cc", "clusterBorder": "#c9a227", "fontSize": "16px"}} }%%
+flowchart LR
+  inet((Internet))
+  modem["Szolgaltatoi modem"]
+
+  subgraph vlans ["VLANs"]
+    direction TB
+    v10["VLAN 10 - Fo\n192.168.10.0/24"]
+    v20["VLAN 20 - Vendeg\n192.168.20.0/24"]
+    v30["VLAN 30 - IoT\n192.168.30.0/24"]
+    v40["VLAN 40 - Kliens\n192.168.40.0/24"]
+  end
+
+  subgraph rack ["10in Rack"]
+    direction TB
+    fw["Firewalla Gold Plus\n192.168.10.1"]
+    sw["UniFi Lite 16 PoE\n192.168.10.2"]
+    srv["Home Server i5-12400\n192.168.10.10"]
+    pi["Raspberry Pi 4\n192.168.10.11"]
+    acc["Patch panel / PDU / UPS"]
+  end
+
+  ap["UniFi U7 Pro\n192.168.10.3"]
+  wifi20((Vendeg Wi-Fi))
+  wifi40((Kliens Wi-Fi))
+  cams["IP kamerak"]
+
+  inet --- modem
+  modem -->|WAN| fw
+  v10 --- fw
+  v20 --- fw
+  v30 --- fw
+  v40 --- fw
+  fw -->|trunk 10/20/30/40| sw
+  fw -.->|2.5G optional| srv
+  sw -->|1G VLAN10| srv
+  sw -->|VLAN10| pi
+  sw -->|PoE trunk| ap
+  sw -->|VLAN30 PoE| cams
+  ap -.-> wifi20
+  ap -.-> wifi40
+  acc --- fw
