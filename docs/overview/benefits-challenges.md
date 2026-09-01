@@ -1,30 +1,24 @@
-# 🚀 Előnyök és hátrányok
+# 🚀 Előnyök és kihívások
 
-A HomeLab rendkívül sokoldalú, a leggyakoribb felhasználási területek:
-
-- *IT Tudás Fejlesztése:* Kipróbálhatod az új technológiákat, gyakorolhatod a rendszeradminisztrációt, hálózattervezést, ami nagy előny a karrierben.
-- *Média- és Adattárolás:* Saját, nagy kapacitású NAS kialakítása, biztonsági mentések készítése, és saját média szerver (Plex, Jellyfin) futtatása.
-- *Otthoni Automatizálás:* A teljes otthoni automatizálási rendszer (pl. Home Assistant) központi futtatása.
-- *Hálózati Kontroll és Biztonság:* Saját tűzfal beállítása, VPN-szerver üzemeltetése a biztonságos távoli eléréshez, vagy AdGuard Home-mal a teljes hálózati hirdetésblokkolás megoldása.
-- *Saját Hosting:* Kisebb weboldalak, játékszerverek, vagy saját chat alkalmazások futtatása.
+A lab tipikus használata: tanulás, média és backup, Home Assistant, saját tűzfal, self-hosted felhő.
 
 ## ✅ Előnyök
 
-- Tudás és Tapasztalat: A legjobb módja a gyakorlati IT ismeretek megszerzésének.
-- Adatszuverenitás: Az adatok otthon, a saját ellenőrzésed alatt maradnak, nem egy külső felhőszolgáltatónál.
-- Testreszabhatóság: Teljesen a saját igényeidre szabhatod a rendszert.
-- Költséghatékony: Hosszú távon olcsóbb lehet, mint bizonyos felhőszolgáltatások havidíja.
+- Gyakorlati hálózat, ZFS, Docker, VLAN.
+- Adatok otthon maradnak (Nextcloud, Immich, Vaultwarden).
+- A stack a saját igényre szabható.
+- Hosszú távon olcsóbb lehet, mint több felhős előfizetés — a 2.0/2.6 BOM és a [pályázatok](../planning/funding.md) ezt számolhatóvá teszik.
 
 ## ❌ Hátrányok
 
-### ⚡ Hardware és Energiafelhasználás
+### Hardver és energia
 
-- Kezdeti Költség: A hardver (szerverek, NAS, hálózati eszközök) beszerzése drága lehet.
-- Energiafogyasztás: A szerverek folyamatos áramot fogyasztanak (24/7), ami magasabb villanyszámlát eredményez. Ez különösen igaz a régi, nagy teljesítményű, rack-es szerverekre. (Ezt enyhítheted energiahatékony mini PC-k vagy modern szerverprocesszorok használatával).
-- Zaj és Hőtermelés: A szerverek zajosak lehetnek és hőt termelnek, ami speciális elhelyezést igényelhet.
+- Kezdeti költség: Firewalla, UniFi, szerver upgrade, lemezek, rack, asztal — lásd [BOM](../planning/phases-bom.md).
+- 24/7 fogyasztás. A 10" / Mini-ITX / i5-12400 választás pont ezt és a zajt célozza, nem egy full-size 19" szervert.
+- Hő és rezgés: Noctua hűtő és NA-SAV rezgéscsillapítás a rackben.
 
-### 🛡️ Adatelérés és Üzemeltetés
+### Üzemeltetés
 
-- Karbantartás: A rendszer fenntartása és frissítése időt és energiát igényel. Te vagy a rendszergazda!
-- Adatelérés (Távoli Elérés): A szolgáltatások internet felé való megnyitása biztonsági kockázatot jelenthet, ha nem megfelelően van beállítva a tűzfal és a biztonság.
-- Redundancia: Megfelelő biztonsági mentési stratégiát kell kialakítani az adatvesztés elkerülése érdekében (RAID és offsite backup). A saját HomeLab rendszer megbízhatósága általában elmarad egy profi adatközpont szintjétől.
+- Te vagy a rendszergazda: frissítés, backup, Firewalla szabályok.
+- Internet felé nyitás kockázat; Tailscale a preferált távoli út.
+- Redundancia: ZFS mirror a két IronWolfon, UPS a Legrand Keorral, offsite backup továbbra is kell.

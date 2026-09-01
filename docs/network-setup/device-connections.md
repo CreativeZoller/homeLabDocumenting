@@ -1,47 +1,57 @@
 # Eszközök megfelelő kötése
 
-A hálózati terv fizikai megvalósítása, azaz a hardvereszközök helyes összekötése kulcsfontosságú a 10 Gbps sebesség és a stabil működés eléréséhez.
+A hálózati terv fizikai megvalósítása: Firewalla, UniFi switch, U7 Pro, home server és a 10" rack kábelezése. Nincs 10G SFP+ gerinc; a switch 1 GbE, a 2.5G a Firewalla ↔ szerver opcionális link.
 
-## 🔌 Fizikai Bekötési Terv (L1 - Layer 1)
+## 🔌 Fizikai bekötési terv (L1)
 
-### 1. A MikroTik "Gerinc" (10 Gbps Backbone)
+### 1. WAN és Firewalla
 
-A legfontosabb kapcsolat a MikroTik hAP ax³ router és a MikroTik CSS610 switch között van.
+- **Kötés:** szolgáltatói modem → Firewalla Gold Plus WAN.
+- **Megjegyzés:** a modem nem hidalható. WAN mód (DHCP vagy PPPoE) TBD.
+- A Firewalla a rack egyik 1U tálcáján ül.
 
-- A kötés: Használd a router SFP+ portját és a switch egyik SFP+ portját.
-- Kábel: Ide egy DAC (Direct Attach Copper) kábel a legjobb választás. Ez egy készre szerelt rézkábel, ami natívan tudja a 10 Gbps-ot, minimális késleltetéssel és hőtermeléssel.
+### 2. Firewalla → UniFi Lite 16 PoE
 
-### 2. A Fő Szerver Bekötése (i5-12600)
+- **Kötés:** Firewalla LAN port → switch uplink (VLAN trunk: 10, 20, 30, 40).
+- **Kábel:** Cat7, a patch panelen keresztül, rövid FGB Cat7 patch a rackben (0.5 m / 0.75 m).
 
-Mivel a szervered a hálózat kiszolgálója (ZFS, Docker, VM-ek), itt van a legnagyobb forgalom.
+### 3. Home server (i5-12400, 2× I226-V)
 
-- A kötés: A szerver hálózati kártyáját (lehetőleg a 2.5 GbE vagy 10 GbE portot) a CSS610 Switch egyik szabad portjába kösd.
-- Kábel: Használj minimum Cat6a (vagy Cat7) S/FTP árnyékolt patch kábelt. Ez biztosítja, hogy a 12 TB-os ZFS pool adatátvitele ne akadjon meg az elektromos zajok miatt.
+- **NIC 1 (2.5G, ajánlott):** Firewalla 2.5G LAN → szerver. Ez viszi a NAS / Docker forgalmat, ha a Firewalla portja szabad.
+- **NIC 2 (1G):** UniFi Lite 16 egyik nem-PoE portja → szerver. Menedzsment / tartalék.
+- **Kábel:** Cat7 S/FTP, keystone a patch panelen.
 
-### 3. Raspberry Pi 4 és egyéb kiegészítők
+Ha a 2.5G közvetlen link még nincs bekötve, a szerver csak a switch 1 GbE portján lóg — ez működik, csak lassabb.
 
-- Raspberry Pi: A Pi-t közvetlenül a CSS610 Switch egyik Gigabit portjába dugd. Mivel a Pi-hole DNS-ként funkcionál, a stabil vezetékes kapcsolat kötelező.
-- IP Kamerák: Ha PoE-képesek, és a switch nem ad áramot, szükséged lesz PoE injektorokra. Ezeket a switch és a kamera közé kell kötni.
+### 4. UniFi U7 Pro
 
-## 🛠️ Kábelezési Aranyszabályok a Homelabhoz
+- **Kötés:** UniFi Lite 16 PoE port → U7 Pro.
+- PoE a switchről; külön táp nem kell.
+- Az AP lehet a racken kívül, jobb Wi-Fi lefedettségért. Trunk a vendég (VLAN 20) és kliens (VLAN 40) SSID-khez.
 
-- *Színkódolás (Opcionális, de profi):*
-    - *Kék:* Általános adatforgalom (PC, Laptop).
-    - *Piros:* Kritikus eszközök (Szerver, Router, Switch).
-    - *Sárga:* IoT eszközök és kamerák.
-    - Ez segít, ha fél év múlva a rack mögött kell keresgélned egy hibát.
-- *Hajlítási sugár:* A Cat6a kábelek vastagabbak és merevebbek. Ne törd meg őket derékszögben a falnál vagy a switchnél, mert az rontja a jelminőséget és adatcsomag-vesztéshez vezethet.
-- *UPS (Szünetmentes) bekötés:* * A szünetmentes tápegységbe (APC) a Router, a Switch és a Szerver tápkábeleit dugd be.
-    - Ne felejtsd el összekötni az APC USB kábelét a szerverrel, hogy az Ubuntu automatikusan le tudjon állni (Graceful Shutdown), ha elmegy az áram.
+### 5. Raspberry Pi 4 és IoT
 
-## 📦 Hardver-sorrend a szekrényben (fentről lefelé)
+- **Pi:** UniFi Lite 16 Gigabit port, VLAN 10 access. Pi-hole miatt vezetékes kapcsolat kötelező.
+- **IP kamerák / IoT:** VLAN 30 access portok. Ha az eszköz PoE-s, a Lite 16 PoE portjaira mehet.
 
-A hűtés és a kábelrendezés miatt ezt a sorrendet javaslom a polcon vagy rackben:
+## 🛠️ Kábelezési szabályok
 
-- MikroTik hAP ax³: Legfelül, hogy a Wi-Fi antennák szabadon sugározhassanak.
-- MikroTik CSS610 Switch: Közvetlenül a router alatt (rövid DAC kábel miatt).
-- Kábelrendező tálca: Itt futnak el a patch kábelek oldalra.
-- Ubuntu Szerver: Ez a legnehezebb és legmelegebb eszköz, kerüljön alulra.
-- APC UPS: Legalulra, mert ez a legnehezebb, és itt nem melegíti az érzékenyebb eszközöket.
+- **Színkód (opcionális):** kék = általános adat, piros = kritikus (szerver, Firewalla, switch), sárga = IoT.
+- **Hajlítási sugár:** a Cat7 vastagabb; ne törni derékszögben.
+- **Patch panel:** hosszú kábelek a keystone-ba, belül 0.5–0.75 m Cat7 patch a portra.
+- **UPS:** a Legrand Keorba a Firewalla, a switch és a szerver tápja. Ha a UPS tud USB jelzést, kösd a szerverre a graceful shutdownhoz. A Legrand 800 VA multiplug USB töltőt is ad; a szerver NUT/USB leállítás TBD.
 
-Ezzel a fizikai felépítéssel a hálózatod nemcsak logikailag, hanem fizikailag is "bulletproof" lesz.
+## 📦 Hardver-sorrend a 10" rackben (fentről lefelé)
+
+Hűtés és kábelrendezés:
+
+1. Patch panel (keystone, 1U)
+2. UniFi Lite 16 PoE
+3. Firewalla Gold Plus (tálcán)
+4. Digitus 10" PDU
+5. Home server (tálcán, alulabb: nehezebb, melegebb)
+6. Legrand Keor UPS (legalul)
+
+Az U7 Pro jellemzően a racken kívül, a szobában. A Raspberry Pi a switch egy portján, tálcán vagy a rack mellett.
+
+Részletes rack-lista: [10" rack](../infrastructure/rack.md).

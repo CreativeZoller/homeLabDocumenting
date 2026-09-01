@@ -4,7 +4,7 @@
 
 - A Raspberry Pi 4 rendelkezzen telepített operációs rendszerrel (pl. Raspberry Pi OS vagy Ubuntu Server for Pi).
 - A felhasználó rendelkezzen sudo jogosultsággal.
-- A Pi a hálózatban van (Switch 3-as port) és statikus IP-címmel rendelkezik.
+- A Pi a hálózatban van (UniFi Lite 16, VLAN 10 access port) és statikus IP-címmel rendelkezik (`192.168.10.11`).
 - Docker/Docker Compose telepítve van a Pi-n, mivel a Pi-hole és a többi szolgáltatás is konténerben fut.
 
 ## Rendszerfrissítés és Alapcsomagok Telepítése
@@ -70,7 +70,7 @@ services:
       - "53:53/udp"
       - "80:80/tcp" # Webes felület
     environment:
-      TZ: 'Europe/Budapest' # Állítsd be a megfelelő időzónát
+      TZ: 'Europe/Vienna'
       WEBPASSWORD: 'YourStrongAdminPassword' # Állítsd be a saját jelszavad
       # Opcionális: a Pi-hole upstream DNS szervereinek beállítása
       # Pl. Cloudflare: DNS1=1.1.1.1; DNS2=1.0.0.1
@@ -156,4 +156,4 @@ cd Pi.Alert
 sudo ./install.sh
 ```
 
-Miután a Pi-hole fut, győződj meg róla, hogy a MikroTik routeren a DHCP-beállításokban a DNS-szerver a Raspberry Pi statikus IP-címére mutat. Ezzel válik a Pi-hole a teljes hálózat hirdetésblokkolójává.
+Miután a Pi-hole fut, a Firewalla VLAN DHCP DNS mezőjét állítsd a Raspberry Pi statikus címére (`192.168.10.11`). Ezzel a Pi-hole a hálózat hirdetésblokkolója.

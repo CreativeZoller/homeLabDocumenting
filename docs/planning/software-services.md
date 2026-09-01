@@ -1,6 +1,6 @@
-# Szoftver és Szolgáltatások
+# Szoftver és szolgáltatások
 
-Szinte minden szolgáltatás Docker konténerben fut a fő szerveren az Ubuntu Server operációs rendszeren, a tároláshoz pedig a ZFS  fájlrendszert használja. Az egyszerű CLI telepítés a teljes folyamatot fedi.
+Szinte minden szolgáltatás Docker konténerben fut a fő szerveren (Ubuntu Server, ZFS). A 2.0 5. fázisa ezt a réteget takarja (Docker, Home Assistant). A Proxmox a 2.6 szerint a későbbi 3 node cluster, nem a jelenlegi host OS.
 
 ## 🚀 Fő Szerver
 
@@ -27,7 +27,7 @@ A legtöbb szolgáltatás konténerizáltan fut, a Portainer  a felügyeleti fel
 | Authentik | Biztonság | Hitelesítési (Authentication) és Identitáskezelési (Identity Provider) megoldás, központi belépést biztosít a HomeLab alkalmazásokhoz (SSO). | Szerver (Docker) |
 | Romm | Média | Képregény-olvasó és menedzser (Comic Book Manager). | Szerver (Docker) |
 | ConvertX | Média | Video konvertáló szoftver (Megjegyzés: Ez lehet egy Windows/asztali alkalmazás is, de Dockerben konvertáló konténereket is lehet futtatni). | Szerver (Docker) |
-| Wallos | Éetmód | Előfizetések kezelése, követése. | Szerver (Docker) |
+| Wallos | Életmód | Előfizetések kezelése, követése. | Szerver (Docker) |
 | Mealie | Életmód | Receptek gyűjtése és menedzselése, vásárlólista készítés receptek alapján. | Szerver (Docker) |
 | BentoPDF | Média | Egy elég jó PDF szerkesztő app | Szerver (Docker) |
 | N8N | Automatizálás | Egy teljesen self hostingolt automatizáló rendszer, amivel kb mindent is automatizálni lehet. | Szerver (Docker) |
@@ -49,4 +49,5 @@ A Pi a könnyebb, hálózati alapú szolgáltatásokra van dedikálva, csökkent
 - *Nextcloud:* A fájlok és adatok feletti szuverenitás központja. Ahelyett, hogy Google Drive-ot vagy Dropboxot használnál, a Nextcloud a saját szervered ZFS tárhelyén tárolja az adatokat.
 - *Pi-hole + Unbound:* A Pi-hole  blokkolja a hirdetéseket és a nyomkövetőket a hálózat DNS-szintjén. Az Unbound hozzáadásával a Pi-hole nem a szolgáltató DNS szervereire támaszkodik, hanem közvetlenül a gyökér DNS szerverektől kérdezi le az IP-címeket, ezzel növelve a sebességet és a magánélet védelmét.
 - *SWAG:* Mivel sok Docker konténer fut különböző portokon (pl. Portainer 9443 , Jellyfin 8096 ), a SWAG teszi lehetővé, hogy az összes szolgáltatás egyetlen kapun keresztül, biztonságosan (HTTPS) és jól megnevezve (pl. jellyfin.homelab.local) legyen elérhető.
-- *Frigate / Scrypted:* Kritikus fontosságúak az okosotthon biztonsági rétegében. A Frigate képes valós idejű tárgyfelismerést (pl. ember, autó) végezni a videófolyamokban, csökkentve ezzel a fals riasztásokat a hagyományos mozgásérzékelőkkel szemben. A Scrypted a különböző gyártók (pl. IP Cam 1 , IP Cam 2 ) kameráit képes egységesen integrálni olyan rendszerekbe, mint a Home Assistant.
+- *Frigate / Scrypted:* Okosotthon biztonsági réteg. A Frigate tárgyfelismerést végez; a Scrypted a kamerákat a Home Assistant elé hozza. Az IoT VLAN 30, a szerver VLAN 10; a Firewalla engedi a HA/Frigate → kamera irányt.
+- *Home Assistant + világítás:* a 2.0 4. fázis Yeelight lámpáját és Groove LED sávját később a HA vezérli.

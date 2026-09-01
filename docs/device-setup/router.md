@@ -1,234 +1,79 @@
-# MikroTik hAP ax³ (C53UiG+5HPaxD2HPaxD) Alapvető HomeLab Beállítás
+# 🛡️ Firewalla Gold Plus — tűzfal és router
 
-A konfiguráció a következőket tartalmazza:
+A Gold Plus a 2.6-os célállapot szerinti fizikai tűzfal és router. A MikroTik hAP ax³ / RB5009 és az Asus RT-BE88U terv helyére lép. Az osztrák szolgáltatói modem nem hidalható, ezért a Firewalla a modem mögött, router módban ül.
 
-- Gyári beállítások törlése (tiszta lappal indulás).
-- WAN konfiguráció (optikai/fiberglass kapcsolaton keresztül).
-- LAN/Bridge konfiguráció (a portok összekötése).
-- Alapvető biztonsági intézkedések (tűzfal, jelszó).
-- DHCP és NAT beállítása.
+A konfiguráció az hivatalos Firewalla appból (iOS / Android) és a Firewalla Box webes / asztali felületéről történik, nem CLI-ből.
 
-*Fontos:* Mivel a hAP ax³ RouterOS 7-et használ, a parancsok ennek a verziónak megfelelőek. A konfigurációt SSH-n vagy WinBox terminálon keresztül adhatod ki.
+## Feladat a topológiában
 
-## 🛡️ MikroTik hAP ax³ Alap Konfiguráció
+- WAN a szolgáltatói modem felé
+- LAN / VLAN: 10 Fő, 20 Vendég, 30 IoT, 40 Kliens
+- DHCP a VLAN-okon
+- Inter-VLAN tűzfal
+- Opcionális 2.5G link a home server felé
 
-### Tisztítás és Alapok (Reset Configuration)
+Hardver: [Hardver kiválasztás](../planning/hardware-selection.md). Bekötés: [Eszközök kötése](../network-setup/device-connections.md).
 
-Mindig azzal kezdj, hogy törlöd a router gyári alapkonfigurációját, hogy ne okozzon konfliktust a hálózati beállításokkal.
+## Fizikai portok
 
-- Törli a router alapértelmezett beállításait. A router ÚJRAINDUL!
+A Gold Plus 2.5GBase-T portokkal rendelkezik. Tipikus kiosztás (a végső portszám a doboz feliratát kövesse):
 
-```bash
-/system reset-configuration no-defaults=yes skip-backup=yes
-```
+| Port | Szerep | Megjegyzés |
+|------|--------|------------|
+| WAN | Modem | DHCP vagy PPPoE — TBD, ISP szerint |
+| LAN | UniFi Lite 16 uplink | Trunk: VLAN 10, 20, 30, 40 |
+| LAN 2.5G | Home server NIC 1 | Opcionális, NAS/Docker forgalom |
+| További LAN | Tartalék | Pl. ideiglenes notebook a beállításhoz |
 
-Csatlakozz újra (az alapértelmezett IP most már nem él, ha a PC-d IP-t kapott DHCP-n, állíts be fix IP-t a PC-n, pl. 192.168.88.2/24 tartományban, és csatlakozz a hAP ax³ MAC-címén vagy az alapértelmezett 192.168.88.1-en keresztül, ha az éppen él).
+## Alapbeállítás
 
-### Alapvető Beállítások (Identitás és Jelszó)
+1. Firewalla táp a Digitus 10" PDU-ról / Legrand UPS-ről.
+2. WAN kábel a modemről, LAN a switchre. Az első beállításnál a telefon ugyanarra a LAN-ra csatlakozzon (vagy a Firewalla Wi-Fi pairing folyamatára).
+3. App: eszköz párosítása, firmware frissítés.
+4. Mód: **Router** (ne Bridge). Simple mód nem ad VLAN-okat.
+5. WAN: DHCP client, vagy PPPoE ha az ISP azt kéri. TBD.
+6. LAN alaphálózat: `192.168.10.0/24`, gateway `192.168.10.1` (VLAN 10).
 
-Állíts be egyedi router nevet (identitást) és azonnal változtasd meg a gyári admin jelszót!
+## VLAN-ok
 
-- Router nevének beállítása
+A Firewalla Network / VLAN felületén:
 
-```bash
-/system identity set name=HomeLab_MikroTik
-```
+| VLAN | Név | Hálózat | DHCP | DNS |
+|------|-----|---------|------|-----|
+| 10 | Fo | 192.168.10.0/24 | 192.168.10.100–254 | Raspberry Pi 192.168.10.11 (Pi-hole), tartalék a Firewalla |
+| 20 | Vendeg | 192.168.20.0/24 | 192.168.20.100–254 | Firewalla vagy Pi-hole, szigorú szűrés |
+| 30 | IoT | 192.168.30.0/24 | 192.168.30.100–254 | Pi-hole |
+| 40 | Kliens | 192.168.40.0/24 | 192.168.40.100–254 | Pi-hole |
 
-- Admin jelszó megváltoztatása (!!!EZ KÖTELEZŐ!!!)
+A switch felé menő LAN port legyen tagged trunk ezekkel a VLAN ID-kkel. A VLAN 10 mehet native/untagged az uplinken, ha az UniFi port profil így van felvéve — a két oldalnak egyeznie kell.
 
-```bash
-/user set 0 password="YOUR_NEW_STRONG_PASSWORD"
-```
+## Tűzfalszabályok (irány)
 
-### Hálózati Interfészek Konfigurációja (WAN és LAN)
+A Gold Plus Rules / Group szabályaival:
 
-A hAP ax³ portjai:
+1. VLAN 10 → VLAN 30: engedélyezve (Home Assistant, Frigate).
+2. VLAN 30 → VLAN 10: tiltva, kivéve a HA/Frigate által kezdeményezett, established forgalom.
+3. VLAN 20 → RFC1918: tiltva; VLAN 20 → WAN: engedélyezve.
+4. VLAN 30 → WAN: alapból tiltva; kivételek eszközönként (OTA, felhős híd).
+5. VLAN 40 → VLAN 10: tiltva (kliens ne érje el az admin/szerver zónát), kivéve a reverse proxy / szükséges szolgáltatások.
+6. WAN → LAN: csak explicit port forward (pl. 443 → SWAG), ha egyáltalán kell. Tailscale a preferált távoli elérés.
 
-- sfp1 (esetünkben ez a Fiber WAN bemenet)
-- ether1-ether4 (LAN portok)
+## Statikus címek
 
-#### LAN Bridge Létrehozása (Belső Hálózat)
+A Firewalla DHCP reservation:
 
-Összekötjük a LAN portokat egyetlen belső hálózatba, és ide csatlakozik az új menedzselt Switch is.
+- `192.168.10.2` UniFi switch
+- `192.168.10.3` U7 Pro
+- `192.168.10.10` home server
+- `192.168.10.11` Raspberry Pi
 
-- Bridge létrehozása a LAN hálózathoz
+## DNS
 
-```bash
-/interface bridge add name=bridge-lan
-```
+Ha a Pi-hole fut, a VLAN DHCP DNS mezője a Pi címe. A Firewalla saját DNS-e tartalék. A Pi-hole unbounddal a [Raspberry Pi](raspberry-pi.md) oldalon van.
 
-- LAN portok hozzáadása a Bridge-hez (a switch ide csatlakozik)
+## Ellenőrzés
 
-```bash
-# ether1-4 a LAN portok a hAP ax3-on
-/interface bridge port add bridge=bridge-lan interface=ether1
-/interface bridge port add bridge=bridge-lan interface=ether2
-/interface bridge port add bridge=bridge-lan interface=ether3
-/interface bridge port add bridge=bridge-lan interface=ether4
-```
-
-#### IP-címek beállítása
-
-WAN (sfp1) beállítása (DHCP-vel) Ha az ISP (szolgáltató) DHCP-n keresztül ad IP-címet az SFP portra, használd ezt:
-
-```bash
-/ip dhcp-client add interface=sfp1 disabled=no
-```
-
-VAGY (PPPoE, ha ezt kéri az ISP):
-
-```bash
-/interface pppoe-client add name=pppoe-out1 interface=sfp1 user="USER@ISP" password="ISP_PASSWORD" add-default-route=yes disabled=no
-```
-
-LAN (bridge-lan) statikus IP-címe A HomeLab hálózat alapértelmezett IP-címzési tartománya legyen 192.168.10.0/24 (VLAN 10 alapja).
-
-- Statikus IP a belső bridge-re
-
-```bash
-/ip address add address=192.168.10.1/24 interface=bridge-lan
-```
-
-### NAT és Tűzfal (Alapvető Biztonság)
-
-Ez biztosítja, hogy a belső hálózat el tudja érni az internetet (NAT/Masquerade), és alapvető védelmet ad a külső behatolások ellen.
-
-#### NAT beállítása
-
-A NAT (Network Address Translation) kötelező, hogy a belső (privát) IP-címek kimenjenek az internetre a publikus WAN IP-címmel.
-
-```bash
-/ip firewall nat add chain=srcnat action=masquerade out-interface=sfp1 comment="Masquerade to Internet"
-```
-
-#### Tűzfal beállítása (Alapvédelem)
-
-Ez egy szigorú alapbeállítás, ami védi a routert és a belső hálózatot a kintről érkező kapcsolatoktól (Drop all, ha nem engedélyezett).
-
-```bash
-# 1. Bejövő forgalom (input chain) – Routerünk védelme
-
-# Engedélyezzük a már létező és kapcsolódó forgalmat
-/ip firewall filter add chain=input action=accept connection-state=established,related comment="Accept established and related"
-
-# Engedélyezzük az SSH/Winbox elérést a belső hálózatról (bridge-lan)
-/ip firewall filter add chain=input action=accept protocol=tcp src-address=192.168.10.0/24 in-interface=bridge-lan comment="Accept WinBox/SSH from LAN"
-
-# Ejtjük (drop) a kintről a routerre érkező összes érvénytelen forgalmat
-/ip firewall filter add chain=input action=drop in-interface=sfp1 comment="Drop all other from WAN"
-
-# 2. Továbbított forgalom (forward chain) – Belső hálózat védelme
-
-# Engedélyezzük a már létező és kapcsolódó forgalmat (szintén kötelező)
-/ip firewall filter add chain=forward action=accept connection-state=established,related comment="Accept established and related"
-
-# Ejtjük a kívülről a belső hálózat felé érkező érvénytelen forgalmat
-/ip firewall filter add chain=forward action=drop connection-state=invalid comment="Drop invalid connections"
-
-# Ejtjük a kívülről érkező, nem kért forgalmat a LAN felé
-/ip firewall filter add chain=forward action=drop connection-state=new connection-nat-state=!dstnat in-interface=sfp1 comment="Drop all incoming non-requested from WAN"
-```
-
-### DHCP Server Beállítása (IP-címek Automatikus Osztása)
-
-A DHCP szerver osztja ki automatikusan az IP-címeket a hálózati eszközöknek.
-
-```bash
-# 1. Létrehozzuk a DHCP poolt (192.168.10.100-254 tartomány)
-/ip pool add name=dhcp-pool-lan ranges=192.168.10.100-192.168.10.254
-
-# 2. Létrehozzuk a DHCP hálózatot
-/ip dhcp-server network add address=192.168.10.0/24 gateway=192.168.10.1 netmask=24 dns-server=8.8.8.8,1.1.1.1 comment="LAN DHCP Network"
-
-# 3. Létrehozzuk a DHCP szervert a bridge-lan interfészen
-/ip dhcp-server add name=dhcp-lan interface=bridge-lan address-pool=dhcp-pool-lan disabled=no
-```
-
-*Későbbi lépés (HomeLab):* Amikor a Raspberry Pi-hole DNS-szerver beállítása megtörténik, a DHCP szerver beállításainál a dns-server mezőt módosítani kell a Pi statikus IP-címére (192.168.10.X).
-
-### DNS Beállítás
-
-Állítsd be, hogy a router mely külső DNS szervereket használja.
-
-```bash
-/ip dns set allow-remote-requests=yes servers=1.1.1.1,8.8.8.8
-```
-
-Ezzel az alap konfigurációval a MikroTik routered biztonságosan felépül:
-
-- Van internetkapcsolat (SFP WAN).
-- A belső hálózat működik (bridge-lan, DHCP).
-- Az alapvető tűzfal védelem be van állítva a behatolások ellen.
-
-## 🔄 MikroTik RB5009UG+S+IN Konfiguráció - Fejlesztett HomeLab
-
-A MikroTik RB5009UG+S+IN egy kiváló, professzionális szintű eszköz, ami jelentős hardveres teljesítményugrást jelent a hAP ax³-hoz képest s tökéletesen beillik mind a 10" mind a 19" szekrényekbe.
-
-A konfigurációs logika és a parancsok 90%-a megmarad, mivel mindkét eszköz RouterOS v7-et használ.
-
-Azonban van néhány hardverrel kapcsolatos különbség a portok elnevezésében és fizikai felépítésében, amit figyelembe kell venni a CLI parancsoknál.
-
-A fő eltérés a fizikai interfészek (portok) elnevezésében van. Az RB5009-en nincsenek dedikált ether1 vagy sfp1 portok, hanem számozott portokat használ:
-
-- *WAN port (Fiber/SFP+):* Az RB5009-en ez a sfp-plus1 interfész.
-- *LAN portok:* ether1-től ether7-ig mennek (7 darab 2.5G port).
-
-A MikroTik RB5009 használatával a korábbi konfigurációhoz képest a parancsok csak minimálisan változnak (interfész nevek), de a HomeLab teljesítménye és a jövőbeni bővíthetőség (különösen a 10G SFP+ port) jelentősen javul.
-
-### Változó parancsok az RB5009-hez
-
-A korábbi hAP ax³ parancsokban csak az interfész neveket kell lecserélni.
-
-| Konfigurációs Elem | hAP ax³ Parancsban Használt Interfész Neve | RB5009-re Átírt Interfész Neve |
-|---|---|---|
-| WAN Bemenet | sfp1 | sfp-plus1 |
-| LAN Bridge Portok | "ether1, ether2, ether3, ether4" | ether1-től ether7-ig |
-| NAT és Tűzfal | sfp1 | sfp-plus1 |
-
-### Konfigurációs Parancsok RB5009-re Átírva
-
-#### LAN Bridge Létrehozása (Belső Hálózat)
-
-Az összes LAN portot (ether1-ether7) hozzáadjuk a belső hálózathoz.
-
-```bash
-# 1. Bridge létrehozása a LAN hálózathoz
-/interface bridge add name=bridge-lan
-
-# 2. LAN portok hozzáadása a Bridge-hez (ether1-ether7)
-/interface bridge port add bridge=bridge-lan interface=ether1
-/interface bridge port add bridge=bridge-lan interface=ether2
-/interface bridge port add bridge=bridge-lan interface=ether3
-/interface bridge port add bridge=bridge-lan interface=ether4
-/interface bridge port add bridge=bridge-lan interface=ether5
-/interface bridge port add bridge=bridge-lan interface=ether6
-/interface bridge port add bridge=bridge-lan interface=ether7
-```
-
-#### WAN (sfp-plus1) beállítása (DHCP-vel)
-
-Az ISP-től kapott DHCP IP-cím igénylése az SFP+ porton:
-
-```bash
-/ip dhcp-client add interface=sfp-plus1 disabled=no
-```
-
-#### NAT beállítása
-
-A NAT beállítása a külső SFP+ portra:
-
-```bash
-/ip firewall nat add chain=srcnat action=masquerade out-interface=sfp-plus1 comment="Masquerade to Internet"
-```
-
-#### Tűzfal módosítása
-
-A tűzfal szabályokat is át kell írni az új WAN interfész nevére:
-
-```bash
-# Ejtjük (drop) a kintről a routerre érkező összes érvénytelen forgalmat
-/ip firewall filter add chain=input action=drop in-interface=sfp-plus1 comment="Drop all other from WAN"
-
-# Ejtjük a kívülről érkező, nem kért forgalmat a LAN felé
-/ip firewall filter add chain=forward action=drop connection-state=new connection-nat-state=!dstnat in-interface=sfp-plus1 comment="Drop all incoming non-requested from WAN"
-```
+- Appban a WAN zöld, a LAN eszközök megjelennek.
+- VLAN 10-es kliens kap `192.168.10.x` címet.
+- Vendég SSID (U7 Pro, VLAN 20) nem pingeli a `192.168.10.10`-et.
+- IoT VLAN 30-as kamera streamje eléri a Frigate-et VLAN 10-ről, fordítva az SSH a szerverre nem megy a kameráról.

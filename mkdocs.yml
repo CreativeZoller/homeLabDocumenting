@@ -1,23 +1,22 @@
 site_name: Home Lab Dokumentáció
-site_description: A Home Lab hálózat, hardver és szoftver leírása, részletes és valós idejű dokumentációval.
+site_description: A Home Lab hálózat, hardver és szoftver leírása a v2.0 + v2.6 terv szerint.
 site_url: https://github.com/CreativeZoller/homeLabDocumenting
 
 theme:
   name: material
   language: hu
   features:
-    - navigation.tabs           # Felső fülek a navigációhoz
-    - navigation.sections       # Felső navigáció szekciókra bontva
-    - navigation.expand         # Automatkus lenyíló almenük
-    - navigation.indexes        # 'index.md' fájlok használata mappák főoldalaként
-    - navigation.footer         # Előző/Következő linkek az oldal alján
-    - search.suggest            # Keresési javaslatok
-    - search.highlight          # Találatok kiemelése
-    - content.code.annotate     # Kódrészletek annotálása
-    - navigation.top            # Oldalsó navigáció elrejtése, felső menü
-    - toc.follow                # Jobb oldali tartalomjegyzék követi a görgetést
-  
-  # Színpaletta (könnyű váltás világos/sötét mód között)
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - content.code.annotate
+    - navigation.top
+    - toc.follow
+
   palette:
     - scheme: default
       toggle:
@@ -28,43 +27,52 @@ theme:
         icon: material/weather-sunny
         name: Váltás világos módra
 
-# --- MARKDOWN BŐVÍTMÉNYEK ---
 markdown_extensions:
   - toc:
-      permalink: true           # Fejléc link ikon a könnyű hivatkozáshoz
+      permalink: true
   - attr_list
   - pymdownx.details
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
       pygments_lang_class: true
-#  - pymdownx.mermaid
   - admonition
   - pymdownx.snippets
   - pymdownx.tasklist:
       custom_checkbox: true
 
-# --- NAVIGÁCIÓ (A TARTALOMJEGYZÉK) ---
 nav:
-  - 🏠 Kezdőlap: index.md
+  - Kezdőlap: index.md
   - Áttekintés:
     - Home Lab fogalma és célja: overview/index-overview.md
-    - Home Lab előnyei és kihívásai: overview/benefits-challenges.md
+    - Előnyök és kihívások: overview/benefits-challenges.md
   - Tervezés:
     - Célok és követelmények: planning/goals-requirements.md
+    - Fázisok és BOM: planning/phases-bom.md
     - Hálózati tervezés: planning/network-design.md
     - Hardver kiválasztás: planning/hardware-selection.md
     - Szoftver és szolgáltatások: planning/software-services.md
-  - Hálózati Topológia: 
+    - Pályázatok: planning/funding.md
+    - Jövőbeli bővítés: planning/future.md
+  - Hálózati topológia:
     - Áttekintés: network/overview.md
-    - Fizikai Diagram: network/physical-diagram.md
+    - Fizikai diagram: network/physical-diagram.md
   - Hálózat telepítése:
-    - Eszközök megfelelő kötése: network-setup/device-connections.md
-  - Eszközök telepítése:
-    - Router: device-setup/router.md    
-    - Switch: device-setup/switch.md
-    - Raspberry Pi: device-setup/raspberry-pi.md
+    - Eszközök kötése: network-setup/device-connections.md
+  - Eszközök:
+    - Firewalla Gold Plus: device-setup/router.md
+    - UniFi Lite 16 PoE: device-setup/switch.md
+    - UniFi U7 Pro: device-setup/unifi-ap.md
     - Home Server: device-setup/home-server.md
     - NAS: device-setup/nas.md
-    
+    - Raspberry Pi: device-setup/raspberry-pi.md
+  - Infrastruktúra:
+    - 10" rack: infrastructure/rack.md
+    - UPS: infrastructure/ups.md
+  - Munkaállomás:
+    - Asztal és KVM: workstation/desk-kvm.md
